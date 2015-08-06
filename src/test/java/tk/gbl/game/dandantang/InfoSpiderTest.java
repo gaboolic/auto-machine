@@ -19,6 +19,55 @@ import java.io.IOException;
 public class InfoSpiderTest {
 
   @Test
+  public void test(){
+    File distanceFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\distance.png");
+    BufferedImage distanceImage = ImageFile.fileToImage(distanceFile);
+
+    System.out.println(InfoSpider.getDistanceInfo(distanceImage));
+  }
+
+  @Test
+  public void test123() {
+    File distanceFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\111.png");
+    BufferedImage distanceImage = ImageFile.fileToImage(distanceFile);
+    for (int w = 0; w < distanceImage.getWidth(); w++) {
+      for (int h = 0; h < distanceImage.getHeight(); h++) {
+        int argb = distanceImage.getRGB(w, h);
+        int r = (int) (((argb >> 16) & 0xFF));
+        int g = (int) (((argb >> 8) & 0xFF));
+        int b = (int) (((argb >> 0) & 0xFF));
+
+        //45 24 红
+        if (w == 45 && h == 24) {
+          System.out.println("红点：");
+
+          System.out.println(r);
+          System.out.println(g);
+          System.out.println(b);
+        }
+
+        //红圈
+        if (w == 43 && h == 18) {
+          System.out.println("红圈：");
+
+          System.out.println(r);
+          System.out.println(g);
+          System.out.println(b);
+        }
+
+        //蓝 0 51 204
+        if (w == 124 && h == 41) {
+          System.out.println("蓝");
+
+          System.out.println(r);
+          System.out.println(g);
+          System.out.println(b);
+        }
+      }
+    }
+  }
+
+  @Test
   public void testMake() {
     File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\angle");
     for (File file : path.listFiles()) {

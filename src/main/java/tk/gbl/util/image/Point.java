@@ -64,4 +64,12 @@ public class Point {
   public void right() {
     this.w++;
   }
+
+  @Override
+  public String toString() {
+    return "Point{" +
+        "h=" + h +
+        ", w=" + w +
+        '}';
+  }
 }
