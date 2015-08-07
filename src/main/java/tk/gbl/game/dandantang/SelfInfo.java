@@ -18,6 +18,7 @@ public class SelfInfo {
    */
   Integer power;
 
+  Integer leftOrRight;
 
 
   public Integer getAngle() {
@@ -36,13 +37,20 @@ public class SelfInfo {
     this.power = power;
   }
 
+  public Integer getLeftOrRight() {
+    return leftOrRight;
+  }
 
+  public void setLeftOrRight(Integer leftOrRight) {
+    this.leftOrRight = leftOrRight;
+  }
 
   @Override
   public String toString() {
     return "SelfInfo{" +
         "angle=" + angle +
         ", power=" + power +
+        ", leftOrRight=" + leftOrRight +
         '}';
   }
 }

@@ -23,7 +23,7 @@ public class InfoSpiderTest {
     File distanceFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\distance.png");
     BufferedImage distanceImage = ImageFile.fileToImage(distanceFile);
 
-    System.out.println(InfoSpider.getDistanceInfo(distanceImage));
+    System.out.println(InfoSpider.getPointInfo(distanceImage));
   }
 
   @Test

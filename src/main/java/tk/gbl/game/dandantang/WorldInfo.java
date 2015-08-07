@@ -12,40 +12,40 @@ public class WorldInfo {
   /**
    * 重力加速度
    */
-  double gravity;
+  public static double gravity = 9.8;
 
   /**
    * 力量系数
    */
-  double powerRatio;
+  public static double powerRatio = 1.0;
 
   /**
    * 风力系数
    */
-  double windRatio;
+  public static double windRatio = 1.0;
 
-  public double getGravity() {
+  public static double getGravity() {
     return gravity;
   }
 
-  public void setGravity(double gravity) {
-    this.gravity = gravity;
+  public static void setGravity(double gravity) {
+    WorldInfo.gravity = gravity;
   }
 
-  public double getPowerRatio() {
+  public static double getPowerRatio() {
     return powerRatio;
   }
 
-  public void setPowerRatio(double powerRatio) {
-    this.powerRatio = powerRatio;
+  public static void setPowerRatio(double powerRatio) {
+    WorldInfo.powerRatio = powerRatio;
   }
 
-  public double getWindRatio() {
+  public static double getWindRatio() {
     return windRatio;
   }
 
-  public void setWindRatio(double windRatio) {
-    this.windRatio = windRatio;
+  public static void setWindRatio(double windRatio) {
+    WorldInfo.windRatio = windRatio;
   }
 
   public void read() throws IOException {
@@ -55,35 +55,35 @@ public class WorldInfo {
       String line = fileReader.readLine();
       if (line != null) {
         String[] params = line.split("#");
-        this.setGravity(Double.parseDouble(params[0]));
-        this.setPowerRatio(Double.parseDouble(params[1]));
-        this.setWindRatio(Double.parseDouble(params[2]));
+        setGravity(Double.parseDouble(params[0]));
+        setPowerRatio(Double.parseDouble(params[1]));
+        setWindRatio(Double.parseDouble(params[2]));
       } else {
-        this.initValue();
+        initValue();
       }
       fileReader.close();
     } else {
-      this.initValue();
+      initValue();
     }
   }
 
   private void initValue() {
-    this.setGravity(9.8);
-    this.setPowerRatio(1.0);
-    this.setWindRatio(1.0);
+    setGravity(9.8);
+    setPowerRatio(1.0);
+    setWindRatio(1.0);
   }
 
   public void write() throws IOException {
     File file = new File("F:\\workProject\\gaboolic\\auto-machine", "world.txt");
     PrintWriter fileWriter = new PrintWriter(new FileWriter(file));
-    fileWriter.println(this.toStoreString());
+    fileWriter.println(toStoreString());
     fileWriter.close();
   }
 
   private String toStoreString() {
-    return this.getGravity() + "#"
-        + this.getPowerRatio() + "#"
-        + this.getWindRatio();
+    return getGravity() + "#"
+        + getPowerRatio() + "#"
+        + getWindRatio();
   }
 
   public static void main(String[] args) throws IOException {

@@ -40,7 +40,8 @@ public class DandanTangGame {
 
   public void ready() {
     SelfInfo selfInfo = InfoSpider.getSelfInfo();
-    GameControl.revise(selfInfo);
+    DistanceInfo distanceInfo = InfoSpider.getDistanceInfo();
+    GameControl.revise(selfInfo,distanceInfo);
 
     GameControl.keyPressSpace();
     stateMachine.fire(DandanTangEvent.PRE_SHOOT);
