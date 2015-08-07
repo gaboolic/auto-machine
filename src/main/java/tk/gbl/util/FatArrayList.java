@@ -22,4 +22,5 @@ public class FatArrayList<E> extends ArrayList<E> {
     int length = this.size();
     return get(length - 1);
   }
+
 }

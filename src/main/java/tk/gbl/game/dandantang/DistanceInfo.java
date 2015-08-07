@@ -13,6 +13,12 @@ public class DistanceInfo {
 
   Integer height;
 
+  /**
+   * 0 red
+   * 1 blue
+   */
+  Integer redOrBlue;
+
   Point red;
   Point blue;
 
@@ -56,5 +62,22 @@ public class DistanceInfo {
         ", red=" + red +
         ", blue=" + blue +
         '}';
+  }
+
+  public Integer getRedOrBlue() {
+    return redOrBlue;
+  }
+
+  public void setRedOrBlue(Integer redOrBlue) {
+    this.redOrBlue = redOrBlue;
+  }
+
+  public void executeDistance() {
+    this.width = this.blue.getW() - this.red.getW();
+    this.height = this.blue.getH() - this.red.getH();
+    if (redOrBlue == 1) {
+      this.width = -this.width;
+      this.height = -this.height;
+    }
   }
 }

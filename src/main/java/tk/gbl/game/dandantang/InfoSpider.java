@@ -19,6 +19,9 @@ public class InfoSpider {
 
   static String filePath = "F:\\workProject\\gaboolic\\auto-machine\\image";
 
+  /**
+   * 风
+   */
   public static Wind getWind() {
     //675 89
     //729 132
@@ -27,6 +30,9 @@ public class InfoSpider {
     return null;
   }
 
+  /**
+   * 角度，方向
+   */
   public static SelfInfo getSelfInfo() {
     //222 624     252 651
     BufferedImage angleImage = ScreenUtil.getScreenPart(221, 635, 24, 13);
@@ -38,9 +44,6 @@ public class InfoSpider {
     SelfInfo selfInfo = new SelfInfo();
     selfInfo.setAngle(angle);
 
-    //332 655 力度
-//    Buffer12edImage powerImage = ScreenUtil.getScreenPart(329, 642, 512, 35);
-
     //233 625 left right
     BufferedImage powerLeftRightImage = ScreenUtil.getScreenPart(227, 632, 10, 10);
     ImageFile.imageToFile(powerLeftRightImage, new File(filePath + "\\powerLeftRightImage", System.currentTimeMillis() + ".png"));
@@ -50,14 +53,67 @@ public class InfoSpider {
     return selfInfo;
   }
 
+  /**
+   * 距离信息
+   */
   public static DistanceInfo getDistanceInfo() {
     BufferedImage distanceImage = ScreenUtil.getScreenPart(972, 104, 210, 120);
     ImageFile.imageToFile(distanceImage, new File(filePath + "\\distance", System.currentTimeMillis() + ".png"));
 
-    return getDistanceInfo(distanceImage);
+    //坐标
+    DistanceInfo distanceInfo = getPointInfo(distanceImage);
+    if (GlobalValue.redOrBlue != null) {
+      distanceInfo.setRedOrBlue(GlobalValue.redOrBlue);
+      distanceInfo.executeDistance();
+      return distanceInfo;
+    }
+
+    int rw = distanceInfo.getRed().getW();
+    int rh = distanceInfo.getRed().getH();
+    FatArrayList<Integer> redRgbList = new FatArrayList<>();
+
+    int bw = distanceInfo.getBlue().getW();
+    int bh = distanceInfo.getBlue().getH();
+    FatArrayList<Integer> blueRgbList = new FatArrayList<>();
+
+
+    for (int i = rw; i < rw + 15; i++) {
+      redRgbList.add(distanceImage.getRGB(i, rh));
+    }
+    for (int i = bw; i < bw + 15; i++) {
+      blueRgbList.add(distanceImage.getRGB(i, bh));
+    }
+
+    int retry = 2;
+    while (retry-- > 0) {
+      try {
+        Thread.sleep(30);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      BufferedImage image = ScreenUtil.getScreenPart(972, 104, 210, 120);
+      for (int i = rw; i < rw + 15; i++) {
+        int newRgb = image.getRGB(i, rh);
+        if (!redRgbList.get(i - rw).equals(newRgb)) {
+          distanceInfo.setRedOrBlue(0);
+          break;
+        }
+      }
+      for (int i = bw; i < bw + 15; i++) {
+        int newRgb = image.getRGB(i, rh);
+        if (!blueRgbList.get(i - bw).equals(newRgb)) {
+          distanceInfo.setRedOrBlue(1);
+          break;
+        }
+      }
+    }
+    GlobalValue.redOrBlue = distanceInfo.getRedOrBlue();
+    distanceInfo.executeDistance();
+    return distanceInfo;
   }
 
-  public static DistanceInfo getDistanceInfo(BufferedImage distanceImage) {
+
+  public static DistanceInfo getPointInfo(BufferedImage distanceImage) {
     FatArrayList<Integer> redXList = new FatArrayList<>();
     FatArrayList<Integer> redYList = new FatArrayList<>();
     FatArrayList<Integer> blueXList = new FatArrayList<>();
@@ -86,12 +142,9 @@ public class InfoSpider {
     int blueX = blueXList.getMedian();
     int blueY = blueYList.getMedian();
 
-    System.out.println(redX + ":" + redY);
-    System.out.println(blueX + ":" + blueY);
-
     DistanceInfo distanceInfo = new DistanceInfo();
-    distanceInfo.setRed(new Point(redX,redY));
-    distanceInfo.setBlue(new Point(blueX,blueY));
+    distanceInfo.setRed(new Point(redX, redY));
+    distanceInfo.setBlue(new Point(blueX, blueY));
     return distanceInfo;
   }
 

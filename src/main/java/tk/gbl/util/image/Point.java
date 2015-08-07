@@ -20,19 +20,6 @@ public class Point {
     }
   }
 
-  @Override
-  public int hashCode() {
-    return Integer.hashCode(h) * 37 + w;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (!(o instanceof Point))
-      return false;
-    Point p = (Point) o;
-    return this.h == p.h && this.w == p.w;
-  }
-
   public int getH() {
     return h;
   }
@@ -71,5 +58,29 @@ public class Point {
         "h=" + h +
         ", w=" + w +
         '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+
+    Point point = (Point) o;
+
+    if (h != point.h)
+      return false;
+    if (w != point.w)
+      return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = h;
+    result = 31 * result + w;
+    return result;
   }
 }
