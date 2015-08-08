@@ -56,7 +56,7 @@ public class InfoSpider {
    * 距离信息
    */
   public static DistanceInfo getDistanceInfo() {
-    BufferedImage distanceImage = ScreenUtil.getScreenPart(964, 100, 255, 105);
+    BufferedImage distanceImage = ScreenUtil.getScreenPart(940, 100, 255, 105);
     ImageFile.imageToFile(distanceImage, new File(filePath + "\\distance", System.currentTimeMillis() + ".png"));
 
     //坐标
@@ -89,7 +89,7 @@ public class InfoSpider {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-      BufferedImage image = ScreenUtil.getScreenPart(964, 100, 255, 105);
+      BufferedImage image = ScreenUtil.getScreenPart(940, 100, 255, 105);
       for (int i = rh; i < rh + 15; i++) {
         int newRgb = image.getRGB(rw, i);
         if (!redRgbList.get(i - rh).equals(newRgb)) {
