@@ -84,11 +84,12 @@ public class InfoSpiderTest {
 
   @Test
   public void testReady() throws IOException {
-    File readyFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\ready\\1439003139759.png");
+    File readyFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\ready\\1439013324828.png");
     BufferedImage readyInfo = ImageFile.fileToImage(readyFile);
 
     int[][] readyImage = Binary.deal(readyInfo);
-    Output.output(readyImage);
+//    Output.output(readyImage);
+    Output.outputS(readyImage);
     ArrayToImage.createImage(readyImage,new File("F:\\workProject\\gaboolic\\auto-machine\\image\\ready\\aaa.png"));
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
     System.out.println(distance);

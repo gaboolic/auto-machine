@@ -32,7 +32,18 @@ public class GameControl {
    * V = Vx / cos(radian)
    */
   public static SelfInfo revise(DistanceInfo distanceInfo) {
-    int count = 20;
+    if(GlobalValue.leftOrRight == null) {
+      if(distanceInfo.getWidth() > 0) {
+        robot.keyPress(KeyEvent.VK_RIGHT);
+        robot.keyRelease(KeyEvent.VK_RIGHT);
+        GlobalValue.leftOrRight = 0;
+      } else {
+        robot.keyPress(KeyEvent.VK_LEFT);
+        robot.keyRelease(KeyEvent.VK_LEFT);
+        GlobalValue.leftOrRight = 1;
+      }
+    }
+    int count = 10;
     while (count-- > 0) {
       robot.keyPress(KeyEvent.VK_UP);
       robot.keyRelease(KeyEvent.VK_UP);
@@ -50,15 +61,17 @@ public class GameControl {
     double vx = Math.sqrt(up / down);
     double v = vx / cos;
 
-    System.out.println("速度" + v);
-
-    selfInfo.setPower((int) (v / WorldInfo.getPowerRatio()));
+    selfInfo.setPower(Math.round(v / WorldInfo.getPowerRatio()));
 
     System.out.println("revise");
-    System.out.println(distanceInfo);
-    System.out.println(selfInfo);
+    System.out.println("selfInfo" + selfInfo);
+    System.out.println("distanceInfo" + distanceInfo);
 
-    robot.keyPress(KeyEvent.VK_3);
+    System.out.println("速度" + v);
+
+    robot.keyPress(KeyEvent.VK_B);
+    robot.keyPress(KeyEvent.VK_1);
+//    robot.keyPress(KeyEvent.VK_3);
     robot.keyPress(KeyEvent.VK_4);
     robot.keyPress(KeyEvent.VK_7);
     robot.keyPress(KeyEvent.VK_8);

@@ -26,10 +26,10 @@ public class Output {
         System.out.print(img[h][w]);
         System.out.print(",");
       }
-      System.out.print("},");
-
-      System.out.println("}");
+      System.out.println("},");
     }
+    System.out.println("}");
+
   }
 
   public static void outputS(int[][] img, String i) {

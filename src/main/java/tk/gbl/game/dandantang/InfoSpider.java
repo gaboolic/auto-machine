@@ -40,7 +40,6 @@ public class InfoSpider {
     int angle = getAngle(angleImage);
 
 
-    System.out.println("角度：" + angle);
     SelfInfo selfInfo = new SelfInfo();
     selfInfo.setAngle(angle);
 
@@ -75,9 +74,6 @@ public class InfoSpider {
     int bw = distanceInfo.getBlue().getW();
     int bh = distanceInfo.getBlue().getH();
     FatArrayList<Integer> blueRgbList = new FatArrayList<>();
-
-    System.out.println("高度" + distanceImage.getHeight());
-    System.out.println("宽度" + distanceImage.getWidth());
 
     for (int i = rh; i < rh + 15; i++) {
       redRgbList.add(distanceImage.getRGB(rw, i));
@@ -154,7 +150,8 @@ public class InfoSpider {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-      BufferedImage image = ImageFile.fileToImage(new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\1438959195807.png"));;
+      BufferedImage image = ImageFile.fileToImage(new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\1438959195807.png"));
+      ;
       for (int i = rh; i < rh + 15; i++) {
         int newRgb = image.getRGB(rw, i);
         if (!redRgbList.get(i - rh).equals(newRgb)) {
@@ -217,7 +214,9 @@ public class InfoSpider {
     ImageFile.imageToFile(readyInfo, new File(filePath + "\\ready", System.currentTimeMillis() + ".png"));
     int[][] readyImage = Binary.deal(readyInfo);
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
-    return distance < 200;
+    int distance2 = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage2);
+    System.out.println("ready:"+distance + "|"+distance2);
+    return distance < 180 || distance2 < 180;
   }
 
   public static int getAngle(BufferedImage angleImage) {

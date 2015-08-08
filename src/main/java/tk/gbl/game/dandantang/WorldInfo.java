@@ -12,7 +12,7 @@ public class WorldInfo {
   /**
    * 重力加速度
    */
-  public static double gravity = 9.8;
+  public static double gravity = 16.5;
 
   /**
    * 力量系数

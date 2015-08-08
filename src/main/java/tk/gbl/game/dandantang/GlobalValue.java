@@ -8,4 +8,5 @@ package tk.gbl.game.dandantang;
  */
 public class GlobalValue {
   public static Integer redOrBlue;
+  public static Integer leftOrRight;
 }

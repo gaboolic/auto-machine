@@ -15,15 +15,17 @@ public class DandanTangGame {
   public void start() {
     new Thread() {
       public void run() {
-        while (true) {
+        boolean flag = true;
+        while (flag) {
           try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
           } catch (InterruptedException e) {
             e.printStackTrace();
           }
           boolean isReady = InfoSpider.getReadyInfo();
           if (isReady) {
             stateMachine.fire(DandanTangEvent.READY);
+            flag = false;
           }
         }
       }
@@ -51,11 +53,14 @@ public class DandanTangGame {
     stateMachine.fire(DandanTangEvent.SHOOT);
 
     try {
-      Thread.sleep(3000);
+      Thread.sleep(4000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
     stateMachine.fire(DandanTangEvent.SHOOT_DONE);
+  }
 
+  public void shutDone(){
+    this.start();
   }
 }

@@ -16,7 +16,7 @@ public class SelfInfo {
   /**
    * 力量
    */
-  Integer power;
+  Long power;
 
   Integer leftOrRight;
 
@@ -29,11 +29,11 @@ public class SelfInfo {
     this.angle = angle;
   }
 
-  public Integer getPower() {
+  public Long getPower() {
     return power;
   }
 
-  public void setPower(Integer power) {
+  public void setPower(Long power) {
     this.power = power;
   }
 

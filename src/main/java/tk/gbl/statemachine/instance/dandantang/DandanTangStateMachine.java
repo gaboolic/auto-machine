@@ -63,8 +63,7 @@ public class DandanTangStateMachine extends AbstractStateMachine<DandanTangEvent
 
 
   public void fromShootingToSufShootOnShootDone(Context context) throws Exception {
-    System.out.println("fromShootingToSufShootOnShootDone");
-
+    dandanTangGame.shutDone();
   }
 
   public void fromSufShootToReadyOnReadyByMan(Context context) throws Exception {
