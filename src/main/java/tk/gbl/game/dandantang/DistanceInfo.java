@@ -74,8 +74,9 @@ public class DistanceInfo {
 
   public void executeDistance() {
     this.width = this.blue.getW() - this.red.getW();
-    this.height = this.blue.getH() - this.red.getH();
+    this.height = this.red.getH() -this.blue.getH();
     if (redOrBlue == 1) {
+      //1是blue
       this.width = -this.width;
       this.height = -this.height;
     }
