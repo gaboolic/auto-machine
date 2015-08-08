@@ -217,7 +217,7 @@ public class InfoSpider {
     ImageFile.imageToFile(readyInfo, new File(filePath + "\\ready", System.currentTimeMillis() + ".png"));
     int[][] readyImage = Binary.deal(readyInfo);
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
-    return distance < 100;
+    return distance < 200;
   }
 
   public static int getAngle(BufferedImage angleImage) {

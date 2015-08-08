@@ -1,10 +1,7 @@
 package tk.gbl.game.dandantang;
 
 import org.junit.Test;
-import tk.gbl.util.image.ArrayToImage;
-import tk.gbl.util.image.Binary;
-import tk.gbl.util.image.ImageFile;
-import tk.gbl.util.image.Output;
+import tk.gbl.util.image.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -83,6 +80,18 @@ public class InfoSpiderTest {
 
       file.renameTo(new File("F:\\workProject\\gaboolic\\auto-machine\\image\\angle\\" + angle + "_" + System.currentTimeMillis() + ".png"));
     }
+  }
+
+  @Test
+  public void testReady() throws IOException {
+    File readyFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\ready\\1439003139759.png");
+    BufferedImage readyInfo = ImageFile.fileToImage(readyFile);
+
+    int[][] readyImage = Binary.deal(readyInfo);
+    Output.output(readyImage);
+    ArrayToImage.createImage(readyImage,new File("F:\\workProject\\gaboolic\\auto-machine\\image\\ready\\aaa.png"));
+    int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
+    System.out.println(distance);
   }
 
   public static void main(String[] args) throws IOException {

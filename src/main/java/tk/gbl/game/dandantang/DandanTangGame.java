@@ -13,39 +13,36 @@ public class DandanTangGame {
   DandanTangStateMachine stateMachine = new DandanTangStateMachine(this);
 
   public void start() {
-      new Thread(){
-        public void run(){
-          while (true) {
-            try {
-              Thread.sleep(3000);
-            } catch (InterruptedException e) {
-              e.printStackTrace();
-            }
-            SelfInfo selfInfo = InfoSpider.getSelfInfo();
-            boolean isReady = InfoSpider.getReadyInfo();
-            if(isReady) {
-              stateMachine.fire(DandanTangEvent.READY);
-            }
+    new Thread() {
+      public void run() {
+        while (true) {
+          try {
+            Thread.sleep(3000);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+          boolean isReady = InfoSpider.getReadyInfo();
+          if (isReady) {
+            stateMachine.fire(DandanTangEvent.READY);
           }
         }
-      }.start();
+      }
+    }.start();
   }
 
 
-
-  public static void main(String[] args){
+  public static void main(String[] args) {
     new DandanTangGame().start();
   }
 
   public void ready() {
-    SelfInfo selfInfo = InfoSpider.getSelfInfo();
     DistanceInfo distanceInfo = InfoSpider.getDistanceInfo();
-    GameControl.revise(selfInfo,distanceInfo);
+    SelfInfo selfInfo = GameControl.revise(distanceInfo);
 
     GameControl.keyPressSpace();
     stateMachine.fire(DandanTangEvent.PRE_SHOOT);
     try {
-      Thread.sleep(selfInfo.getPower()*40+25);
+      Thread.sleep(selfInfo.getPower() * 40 + 25);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
