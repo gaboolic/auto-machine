@@ -22,7 +22,6 @@ public class DandanTangGame {
               e.printStackTrace();
             }
             SelfInfo selfInfo = InfoSpider.getSelfInfo();
-            DistanceInfo distanceInfo = InfoSpider.getDistanceInfo();
             boolean isReady = InfoSpider.getReadyInfo();
             if(isReady) {
               stateMachine.fire(DandanTangEvent.READY);

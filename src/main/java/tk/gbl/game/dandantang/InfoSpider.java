@@ -57,7 +57,7 @@ public class InfoSpider {
    * 距离信息
    */
   public static DistanceInfo getDistanceInfo() {
-    BufferedImage distanceImage = ScreenUtil.getScreenPart(972, 104, 210, 120);
+    BufferedImage distanceImage = ScreenUtil.getScreenPart(964, 100, 255, 105);
     ImageFile.imageToFile(distanceImage, new File(filePath + "\\distance", System.currentTimeMillis() + ".png"));
 
     //坐标
@@ -76,32 +76,95 @@ public class InfoSpider {
     int bh = distanceInfo.getBlue().getH();
     FatArrayList<Integer> blueRgbList = new FatArrayList<>();
 
+    System.out.println("高度" + distanceImage.getHeight());
+    System.out.println("宽度" + distanceImage.getWidth());
 
-    for (int i = rw; i < rw + 15; i++) {
-      redRgbList.add(distanceImage.getRGB(i, rh));
+    for (int i = rh; i < rh + 15; i++) {
+      redRgbList.add(distanceImage.getRGB(rw, i));
     }
-    for (int i = bw; i < bw + 15; i++) {
-      blueRgbList.add(distanceImage.getRGB(i, bh));
+    for (int i = bh; i < bh + 15; i++) {
+      blueRgbList.add(distanceImage.getRGB(bw, i));
     }
 
-    int retry = 2;
+    int retry = 4;
     while (retry-- > 0) {
       try {
         Thread.sleep(30);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-      BufferedImage image = ScreenUtil.getScreenPart(972, 104, 210, 120);
-      for (int i = rw; i < rw + 15; i++) {
-        int newRgb = image.getRGB(i, rh);
-        if (!redRgbList.get(i - rw).equals(newRgb)) {
+      BufferedImage image = ScreenUtil.getScreenPart(964, 100, 255, 105);
+      for (int i = rh; i < rh + 15; i++) {
+        int newRgb = image.getRGB(rw, i);
+        if (!redRgbList.get(i - rh).equals(newRgb)) {
           distanceInfo.setRedOrBlue(0);
           break;
         }
       }
-      for (int i = bw; i < bw + 15; i++) {
-        int newRgb = image.getRGB(i, rh);
-        if (!blueRgbList.get(i - bw).equals(newRgb)) {
+      for (int i = bh; i < bh + 15; i++) {
+        int newRgb = image.getRGB(bw, i);
+        if (!blueRgbList.get(i - bh).equals(newRgb)) {
+          distanceInfo.setRedOrBlue(1);
+          break;
+        }
+      }
+    }
+    GlobalValue.redOrBlue = distanceInfo.getRedOrBlue();
+    distanceInfo.executeDistance();
+    return distanceInfo;
+  }
+
+  /**
+   * 距离信息
+   */
+  public static DistanceInfo getDistanceInfoTest() {
+    BufferedImage distanceImage = ImageFile.fileToImage(new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\1438959189485.png"));
+    ImageFile.imageToFile(distanceImage, new File(filePath + "\\distance", System.currentTimeMillis() + ".png"));
+
+    //坐标
+    DistanceInfo distanceInfo = getPointInfo(distanceImage);
+    if (GlobalValue.redOrBlue != null) {
+      distanceInfo.setRedOrBlue(GlobalValue.redOrBlue);
+      distanceInfo.executeDistance();
+      return distanceInfo;
+    }
+
+    int rw = distanceInfo.getRed().getW();
+    int rh = distanceInfo.getRed().getH();
+    FatArrayList<Integer> redRgbList = new FatArrayList<>();
+
+    int bw = distanceInfo.getBlue().getW();
+    int bh = distanceInfo.getBlue().getH();
+    FatArrayList<Integer> blueRgbList = new FatArrayList<>();
+
+    System.out.println("高度" + distanceImage.getHeight());
+    System.out.println("宽度" + distanceImage.getWidth());
+
+    for (int i = rh; i < rh + 15; i++) {
+      redRgbList.add(distanceImage.getRGB(rw, i));
+    }
+    for (int i = bh; i < bh + 15; i++) {
+      blueRgbList.add(distanceImage.getRGB(bw, i));
+    }
+
+    int retry = 1;
+    while (retry-- > 0) {
+      try {
+        Thread.sleep(30);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      BufferedImage image = ImageFile.fileToImage(new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\1438959195807.png"));;
+      for (int i = rh; i < rh + 15; i++) {
+        int newRgb = image.getRGB(rw, i);
+        if (!redRgbList.get(i - rh).equals(newRgb)) {
+          distanceInfo.setRedOrBlue(0);
+          break;
+        }
+      }
+      for (int i = bh; i < bh + 15; i++) {
+        int newRgb = image.getRGB(bw, i);
+        if (!blueRgbList.get(i - bh).equals(newRgb)) {
           distanceInfo.setRedOrBlue(1);
           break;
         }
@@ -154,7 +217,6 @@ public class InfoSpider {
     ImageFile.imageToFile(readyInfo, new File(filePath + "\\ready", System.currentTimeMillis() + ".png"));
     int[][] readyImage = Binary.deal(readyInfo);
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
-    System.out.println(distance);
     return distance < 100;
   }
 

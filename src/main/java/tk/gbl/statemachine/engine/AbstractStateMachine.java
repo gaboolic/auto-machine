@@ -59,7 +59,6 @@ public class AbstractStateMachine<E, S, C> implements StateMachine<E, S, C> {
   @Override
   public void fire(E event) {
     System.out.print(event);
-    System.out.println(" 之前："+currState);
     try {
       //根据当前状态找到event map
       Map<E, Transit> event_TransitMap = state_eventMap.get(currState);
@@ -72,7 +71,6 @@ public class AbstractStateMachine<E, S, C> implements StateMachine<E, S, C> {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    System.out.println("之后状态："+currState);
   }
 
   @Override

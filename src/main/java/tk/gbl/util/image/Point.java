@@ -11,12 +11,12 @@ public class Point {
   int h = 0;
   int w = 0;
 
-  public Point(int h, int w) {
-    if (h > 0) {
-      this.h = h;
-    }
+  public Point(int w, int h) {
     if (w > 0) {
       this.w = w;
+    }
+    if (h > 0) {
+      this.h = h;
     }
   }
 

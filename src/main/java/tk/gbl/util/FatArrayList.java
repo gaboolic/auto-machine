@@ -15,12 +15,12 @@ public class FatArrayList<E> extends ArrayList<E> {
 
   public E getMedian() {
     int length = this.size();
-    return get(length / 2);
+    return length == 0 ? null : get(length / 2);
   }
 
   public E getEnd() {
     int length = this.size();
-    return get(length - 1);
+    return length == 0 ? null : get(length - 1);
   }
 
 }

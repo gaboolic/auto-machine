@@ -20,10 +20,16 @@ public class InfoSpiderTest {
 
   @Test
   public void test(){
-    File distanceFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\distance.png");
+    File distanceFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\1438999873569.png");
     BufferedImage distanceImage = ImageFile.fileToImage(distanceFile);
 
     System.out.println(InfoSpider.getPointInfo(distanceImage));
+  }
+
+
+  @Test
+  public void getDistanceInfoTest(){
+    InfoSpider.getDistanceInfoTest();
   }
 
   @Test
