@@ -77,7 +77,11 @@ public class DandanTangGame {
     GlobalValue.redOrBlue = null;
 
     System.err.println("游戏结束，重新开始");
-
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     this.start();
   }
 }

@@ -29,7 +29,7 @@ public class InfoSpiderOverTest {
 
   @Test
   public void test123() throws IOException {
-    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\over\\1439114106554.png");
+    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\over\\1439118389777.png");
     BufferedImage overInfo = ImageFile.fileToImage(file);
 
     int[][] overImage = Binary.deal(overInfo);

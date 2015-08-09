@@ -77,8 +77,8 @@ public class GameControl {
     robot.keyPress(KeyEvent.VK_B);
     robot.keyPress(KeyEvent.VK_1);
     robot.keyRelease(KeyEvent.VK_1);
-    robot.keyPress(KeyEvent.VK_1);
-    robot.keyRelease(KeyEvent.VK_1);
+//    robot.keyPress(KeyEvent.VK_1);
+//    robot.keyRelease(KeyEvent.VK_1);
 
     robot.keyPress(KeyEvent.VK_4);
     robot.keyPress(KeyEvent.VK_5);
