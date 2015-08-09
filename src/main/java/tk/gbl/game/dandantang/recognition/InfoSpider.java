@@ -169,7 +169,11 @@ public class InfoSpider {
 
 
   public static boolean getOverInfo() {
-    return false;
+    BufferedImage overInfo = ScreenUtil.getScreenPart(933, 108, 151, 38);
+    ImageFile.imageToFile(overInfo, new File(filePath + "\\over", System.currentTimeMillis() + ".png"));
+    int[][] overImage = Binary.deal(overInfo);
+    int distance = Distance.hamDistance(overImage, ImageArrayInstance.overImage);
+    return distance < 210;
   }
 
   /**

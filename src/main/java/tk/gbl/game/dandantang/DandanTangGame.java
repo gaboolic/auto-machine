@@ -74,6 +74,9 @@ public class DandanTangGame {
   public void gameOver() {
     GlobalValue.leftOrRight = null;
     GlobalValue.redOrBlue = null;
+
+    System.out.println("游戏结束，重新开始");
+
     this.start();
   }
 }
