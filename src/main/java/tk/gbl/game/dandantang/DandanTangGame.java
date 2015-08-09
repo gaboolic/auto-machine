@@ -20,11 +20,6 @@ public class DandanTangGame {
       public void run() {
         boolean flag = true;
         while (flag) {
-          try {
-            Thread.sleep(2000);
-          } catch (InterruptedException e) {
-            e.printStackTrace();
-          }
           boolean isReady = InfoSpider.getReadyInfo();
           if (isReady) {
             stateMachine.fire(DandanTangEvent.READY);
@@ -34,6 +29,12 @@ public class DandanTangGame {
           if (isOver) {
             stateMachine.fire(DandanTangEvent.GAME_OVER);
             flag = false;
+          }
+
+          try {
+            Thread.sleep(2000);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
           }
         }
       }
@@ -75,7 +76,7 @@ public class DandanTangGame {
     GlobalValue.leftOrRight = null;
     GlobalValue.redOrBlue = null;
 
-    System.out.println("游戏结束，重新开始");
+    System.err.println("游戏结束，重新开始");
 
     this.start();
   }
