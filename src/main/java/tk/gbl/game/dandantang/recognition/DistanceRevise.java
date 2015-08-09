@@ -40,21 +40,54 @@ public class DistanceRevise {
       }
     }
 
-    int length = 0;
+    FatArrayList<FatArrayList<Integer>> greyPointLineList = new FatArrayList<>();
+    for (int h = 0; h < distanceImage.getHeight(); h++) {
+      FatArrayList<Integer> greyPointLine = new FatArrayList<>();
+      for (int w = 0; w < distanceImage.getWidth(); w++) {
+        int argb = distanceImage.getRGB(w, h);
+        if (RecognitionUtil.isGreyLine(argb)) {
+          greyPointLine.add(w);
+        }
+      }
+      if (greyPointLine.size() > 30) {
+        greyPointLine.set("h", h);
+        greyPointLineList.add(greyPointLine);
+      }
+    }
+    int length = 1000;
     if (greyLineList.size() == 2) {
       int w1 = greyLineList.get(0).getCustom("w");
       int w2 = greyLineList.get(1).getCustom("w");
       length = Math.abs(w1 - w2);
     } else if (greyLineList.size() == 1) {
+
+      int lineW = 3;
+      if (greyPointLineList.size() > 0) {
+        lineW = greyPointLineList.get(0).get(3);
+      }
+
       int wl = borderGreyLineList.get(0).getCustom("w");
       int w = greyLineList.get(0).getCustom("w");
       int wr = borderGreyLineList.get(1).getCustom("w");
-      int w1 = Math.abs(w-wl);
-      int w2 = Math.abs(wr-w);
-      length = Math.max(w1,w2);
+      int w1 = Math.abs(w - wl);
+      int w2 = Math.abs(wr - w);
+
+      if (wl < lineW && lineW < w) {
+        length = w1;
+      } else if (w < lineW && lineW < wr) {
+        length = w2;
+      }
     }
-    distanceInfo.setWidth(distanceInfo.getWidth()*130/length);
-    distanceInfo.setHeight(distanceInfo.getHeight()*130/length);
+    System.out.println("length:" + length);
+
+    if (distanceInfo == null) {
+      return;
+    }
+    System.out.println("前" + distanceInfo.getWidth() + "_" + distanceInfo.getHeight());
+    distanceInfo.setWidth(distanceInfo.getWidth() / length * 1000);
+    distanceInfo.setHeight(distanceInfo.getHeight() / length * 1000);
+    System.out.println("后" + distanceInfo.getWidth() + "_" + distanceInfo.getHeight());
+
 
   }
 

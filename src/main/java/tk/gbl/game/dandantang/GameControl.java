@@ -37,8 +37,8 @@ public class GameControl {
    * V = Vx / cos(radian)
    */
   public static SelfInfo revise(DistanceInfo distanceInfo) {
-    if(GlobalValue.leftOrRight == null) {
-      if(distanceInfo.getWidth() > 0) {
+    if (GlobalValue.leftOrRight == null) {
+      if (distanceInfo.getWidth() > 0) {
         robot.keyPress(KeyEvent.VK_RIGHT);
         robot.keyRelease(KeyEvent.VK_RIGHT);
         GlobalValue.leftOrRight = 0;
@@ -48,7 +48,7 @@ public class GameControl {
         GlobalValue.leftOrRight = 1;
       }
     }
-    int count = 0;
+    int count = 20;
     while (count-- > 0) {
       robot.keyPress(KeyEvent.VK_UP);
       robot.keyRelease(KeyEvent.VK_UP);
@@ -56,7 +56,7 @@ public class GameControl {
     SelfInfo selfInfo = InfoSpider.getSelfInfo();
 
     //把向左的，等效为向右的情况
-    distanceInfo.setWidth( Math.abs(distanceInfo.getWidth()));
+    distanceInfo.setWidth(Math.abs(distanceInfo.getWidth()));
 
     double radian = selfInfo.getAngle() * 2 * Math.PI / 360;
     double tan = Math.tan(radian);
@@ -76,8 +76,13 @@ public class GameControl {
 
     robot.keyPress(KeyEvent.VK_B);
     robot.keyPress(KeyEvent.VK_1);
-    robot.keyPress(KeyEvent.VK_3);
+    robot.keyPress(KeyEvent.VK_1);
+    robot.keyPress(KeyEvent.VK_1);
+
     robot.keyPress(KeyEvent.VK_4);
+    robot.keyPress(KeyEvent.VK_5);
+    robot.keyPress(KeyEvent.VK_6);
+    robot.keyPress(KeyEvent.VK_3);
     robot.keyPress(KeyEvent.VK_7);
     robot.keyPress(KeyEvent.VK_8);
     robot.keyPress(KeyEvent.VK_8);

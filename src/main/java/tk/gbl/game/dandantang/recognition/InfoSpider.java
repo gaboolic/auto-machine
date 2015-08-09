@@ -70,6 +70,7 @@ public class InfoSpider {
     if (GlobalValue.redOrBlue != null) {
       distanceInfo.setRedOrBlue(GlobalValue.redOrBlue);
       distanceInfo.executeDistance();
+      DistanceRevise.distanceRevise(distanceImage,distanceInfo);
       return distanceInfo;
     }
 
@@ -162,7 +163,6 @@ public class InfoSpider {
     int[][] readyImage = Binary.deal(readyInfo);
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
     int distance2 = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage2);
-    System.out.println("ready:"+distance + "|"+distance2);
     return distance < 210 || distance2 < 210;
   }
 

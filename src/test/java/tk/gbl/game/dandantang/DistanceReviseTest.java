@@ -16,7 +16,7 @@ import java.io.File;
 public class DistanceReviseTest {
   @Test
   public void test() {
-    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\1439088308560.png");
+    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\test5.png");
     BufferedImage bufferedImage = ImageFile.fileToImage(file);
     DistanceRevise.distanceRevise(bufferedImage,null);
   }
