@@ -15,5 +15,7 @@ public enum DandanTangEvent {
   SHOOT, //释放空格
 
   SHOOT_DONE_BY_MAN,
-  SHOOT_DONE
+  SHOOT_DONE,
+
+  GAME_OVER
 }

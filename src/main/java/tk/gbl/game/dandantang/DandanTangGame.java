@@ -1,5 +1,8 @@
 package tk.gbl.game.dandantang;
 
+import tk.gbl.game.dandantang.bean.DistanceInfo;
+import tk.gbl.game.dandantang.bean.SelfInfo;
+import tk.gbl.game.dandantang.recognition.InfoSpider;
 import tk.gbl.statemachine.instance.dandantang.DandanTangEvent;
 import tk.gbl.statemachine.instance.dandantang.DandanTangStateMachine;
 
@@ -27,14 +30,14 @@ public class DandanTangGame {
             stateMachine.fire(DandanTangEvent.READY);
             flag = false;
           }
+          boolean isOver = InfoSpider.getOverInfo();
+          if (isOver) {
+            stateMachine.fire(DandanTangEvent.GAME_OVER);
+            flag = false;
+          }
         }
       }
     }.start();
-  }
-
-
-  public static void main(String[] args) {
-    new DandanTangGame().start();
   }
 
   public void ready() {
@@ -44,7 +47,7 @@ public class DandanTangGame {
     GameControl.keyPressSpace();
     stateMachine.fire(DandanTangEvent.PRE_SHOOT);
     try {
-      Thread.sleep(selfInfo.getPower() * 40 + 25);
+      Thread.sleep((long) (selfInfo.getPower() * 40 + 25));
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
@@ -60,7 +63,16 @@ public class DandanTangGame {
     stateMachine.fire(DandanTangEvent.SHOOT_DONE);
   }
 
-  public void shutDone(){
+  public void shutDone() {
+    this.start();
+  }
+
+  /**
+   * 游戏结束 清理
+   */
+  public void gameOver() {
+    GlobalValue.leftOrRight = null;
+    GlobalValue.redOrBlue = null;
     this.start();
   }
 }

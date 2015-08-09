@@ -1,6 +1,9 @@
 package tk.gbl.game.dandantang;
 
 import org.junit.Test;
+import tk.gbl.game.dandantang.recognition.ImageArrayInstance;
+import tk.gbl.game.dandantang.recognition.InfoSpider;
+import tk.gbl.game.dandantang.recognition.RecognitionUtil;
 import tk.gbl.util.image.*;
 
 import java.awt.image.BufferedImage;
@@ -76,7 +79,7 @@ public class InfoSpiderTest {
     for (File file : path.listFiles()) {
       //file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\angle\\1438504034790.png");
       BufferedImage image = ImageFile.fileToImage(file);
-      int angle = InfoSpider.getAngle(image);
+      int angle = RecognitionUtil.getAngle(image);
 
       file.renameTo(new File("F:\\workProject\\gaboolic\\auto-machine\\image\\angle\\" + angle + "_" + System.currentTimeMillis() + ".png"));
     }

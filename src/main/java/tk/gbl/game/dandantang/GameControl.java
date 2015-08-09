@@ -1,5 +1,10 @@
 package tk.gbl.game.dandantang;
 
+import tk.gbl.game.dandantang.bean.DistanceInfo;
+import tk.gbl.game.dandantang.bean.SelfInfo;
+import tk.gbl.game.dandantang.bean.WorldInfo;
+import tk.gbl.game.dandantang.recognition.InfoSpider;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -51,7 +56,7 @@ public class GameControl {
     SelfInfo selfInfo = InfoSpider.getSelfInfo();
 
     //把向左的，等效为向右的情况
-    distanceInfo.setWidth(Math.abs(distanceInfo.getWidth()));
+    distanceInfo.setWidth( Math.abs(distanceInfo.getWidth()));
 
     double radian = selfInfo.getAngle() * 2 * Math.PI / 360;
     double tan = Math.tan(radian);
@@ -61,7 +66,7 @@ public class GameControl {
     double vx = Math.sqrt(up / down);
     double v = vx / cos;
 
-    selfInfo.setPower(Math.round(v / WorldInfo.getPowerRatio()));
+    selfInfo.setPower(v / WorldInfo.getPowerRatio());
 
     System.out.println("revise");
     System.out.println("selfInfo" + selfInfo);

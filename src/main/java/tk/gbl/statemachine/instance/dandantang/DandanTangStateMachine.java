@@ -32,7 +32,11 @@ import tk.gbl.statemachine.engine.Context;
 
     //发射完成 -> 就绪
     @Transit(from = "SUF_SHOOT", to = "READY", on = "READY_BY_MAN", callMethod = "fromSufShootToReadyOnReadyByMan"),
-    @Transit(from = "SUF_SHOOT", to = "READY", on = "READY", callMethod = "fromSufShootToReadyOnReady")
+    @Transit(from = "SUF_SHOOT", to = "READY", on = "READY", callMethod = "fromSufShootToReadyOnReady"),
+    @Transit(from = "SUF_SHOOT", to = "GAME_OVER", on = "GAME_OVER", callMethod = "fromSufShootToGameOverOnGameOver"),
+
+    //游戏结束 -> 就绪
+    @Transit(from = "GAME_OVER", to = "READY", on = "READY", callMethod = "fromGameOverToReadyOnReady"),
 })
 @StateMachineParameters(stateType = DandanTangState.class, eventType = DandanTangEvent.class, contextType = Context.class)
 public class DandanTangStateMachine extends AbstractStateMachine<DandanTangEvent, DandanTangState, Context> {
@@ -75,6 +79,14 @@ public class DandanTangStateMachine extends AbstractStateMachine<DandanTangEvent
   }
 
   public void fromReadyToReadyOnReady(Context context) throws Exception {
+    dandanTangGame.ready();
+  }
+
+  public void fromSufShootToGameOverOnGameOver(Context context){
+    dandanTangGame.gameOver();
+  }
+
+  public void fromGameOverToReadyOnReady(Context context){
     dandanTangGame.ready();
   }
 }

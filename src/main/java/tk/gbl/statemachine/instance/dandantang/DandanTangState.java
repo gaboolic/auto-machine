@@ -10,7 +10,8 @@ public enum DandanTangState {
   READY(0),
   PRE_SHOOT(1),
   SHOOTING(2),
-  SUF_SHOOT(3);
+  SUF_SHOOT(3),
+  GAME_OVER(4);
 
   DandanTangState(Integer state) {
     this.state = state;
