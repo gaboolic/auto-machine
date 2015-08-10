@@ -21,6 +21,13 @@ import java.util.Set;
 public class WindTest {
 
   @Test
+  public void test111(){
+    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind\\1439214733067.png");
+    BufferedImage image = ImageFile.fileToImage(file);
+    System.out.println(WindInfoSpider.makeOutLeftNumber(image));
+  }
+
+  @Test
   public void testLeftOrRight() {
     File file1 = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind\\l-l-l-l-r-1438434430717.png");
     BufferedImage image1= ImageFile.fileToImage(file1);

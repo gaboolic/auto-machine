@@ -41,7 +41,7 @@ public class InfoSpider {
 
     //233 625 left right
     BufferedImage powerLeftRightImage = ScreenUtil.getScreenPart(227, 632, 10, 10);
-    ImageFile.imageToFile(powerLeftRightImage, new File(filePath + "\\powerLeftRightImage", System.currentTimeMillis() + ".png"));
+//    ImageFile.imageToFile(powerLeftRightImage, new File(filePath + "\\powerLeftRightImage", System.currentTimeMillis() + ".png"));
 
 
     //得到发射方向
@@ -147,17 +147,17 @@ public class InfoSpider {
   public static boolean getReadyInfo() {
     //332 655
     BufferedImage readyInfo = ScreenUtil.getScreenPart(658, 234, 50, 20);
-    ImageFile.imageToFile(readyInfo, new File(filePath + "\\ready", System.currentTimeMillis() + ".png"));
+//    ImageFile.imageToFile(readyInfo, new File(filePath + "\\ready", System.currentTimeMillis() + ".png"));
     int[][] readyImage = Binary.deal(readyInfo);
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
     int distance2 = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage2);
-    return distance < 210 || distance2 < 210;
+    return distance < 220 || distance2 < 220;
   }
 
 
   public static boolean getOverInfo() {
     BufferedImage overInfo = ScreenUtil.getScreenPart(933, 108, 151, 38);
-    ImageFile.imageToFile(overInfo, new File(filePath + "\\over", System.currentTimeMillis() + ".png"));
+//    ImageFile.imageToFile(overInfo, new File(filePath + "\\over", System.currentTimeMillis() + ".png"));
     int[][] overImage = Binary.deal(overInfo);
     int distance = Distance.hamDistance(overImage, OverImageArrayInstance.overImage);
     int distance2 = Distance.hamDistance(overImage, OverImageArrayInstance.overImage2);
