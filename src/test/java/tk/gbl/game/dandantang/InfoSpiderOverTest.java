@@ -1,8 +1,10 @@
 package tk.gbl.game.dandantang;
 
 import org.junit.Test;
-import tk.gbl.game.dandantang.recognition.ImageArrayInstance;
-import tk.gbl.util.image.*;
+import tk.gbl.util.image.ArrayToImage;
+import tk.gbl.util.image.Binary;
+import tk.gbl.util.image.ImageFile;
+import tk.gbl.util.image.Output;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -29,7 +31,7 @@ public class InfoSpiderOverTest {
 
   @Test
   public void test123() throws IOException {
-    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\over\\1439118389777.png");
+    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\over\\1439124055481.png");
     BufferedImage overInfo = ImageFile.fileToImage(file);
 
     int[][] overImage = Binary.deal(overInfo);
@@ -37,7 +39,7 @@ public class InfoSpiderOverTest {
 
     ArrayToImage.createImage(overImage,new File("F:\\workProject\\gaboolic\\auto-machine\\image\\over\\over_array_real_2.png"));
 
-    int distance = Distance.hamDistance(overImage, ImageArrayInstance.overImage);
-    System.out.println(distance);
+//    int distance = Distance.hamDistance(overImage, ImageArrayInstance.overImage);
+//    System.out.println(distance);
   }
 }

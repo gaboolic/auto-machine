@@ -48,7 +48,7 @@ public class GameControl {
         GlobalValue.leftOrRight = 1;
       }
     }
-    int count = 20;
+    int count = 0;
     while (count-- > 0) {
       robot.keyPress(KeyEvent.VK_UP);
       robot.keyRelease(KeyEvent.VK_UP);

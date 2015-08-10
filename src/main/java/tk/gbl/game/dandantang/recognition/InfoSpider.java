@@ -70,7 +70,7 @@ public class InfoSpider {
     if (GlobalValue.redOrBlue != null) {
       distanceInfo.setRedOrBlue(GlobalValue.redOrBlue);
       distanceInfo.executeDistance();
-      DistanceRevise.distanceRevise(distanceImage,distanceInfo);
+      DistanceRevise.distanceRevise(distanceImage, distanceInfo);
       return distanceInfo;
     }
 
@@ -114,11 +114,9 @@ public class InfoSpider {
     }
     GlobalValue.redOrBlue = distanceInfo.getRedOrBlue();
     distanceInfo.executeDistance();
-    DistanceRevise.distanceRevise(distanceImage,distanceInfo);
+    DistanceRevise.distanceRevise(distanceImage, distanceInfo);
     return distanceInfo;
   }
-
-
 
 
   public static DistanceInfo getPointInfo(BufferedImage distanceImage) {
@@ -167,13 +165,13 @@ public class InfoSpider {
   }
 
 
-
   public static boolean getOverInfo() {
     BufferedImage overInfo = ScreenUtil.getScreenPart(933, 108, 151, 38);
     ImageFile.imageToFile(overInfo, new File(filePath + "\\over", System.currentTimeMillis() + ".png"));
     int[][] overImage = Binary.deal(overInfo);
-    int distance = Distance.hamDistance(overImage, ImageArrayInstance.overImage);
-    return distance < 800;
+    int distance = Distance.hamDistance(overImage, OverImageArrayInstance.overImage);
+    int distance2 = Distance.hamDistance(overImage, OverImageArrayInstance.overImage2);
+    return distance < 800 || distance2 < 800;
   }
 
   /**

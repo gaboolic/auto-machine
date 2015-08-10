@@ -58,19 +58,23 @@ public class AbstractStateMachine<E, S, C> implements StateMachine<E, S, C> {
 
   @Override
   public void fire(E event) {
-    System.out.println("当前状态："+currState);
-    System.out.println("事件："+event);
-    try {
-      //根据当前状态找到event map
-      Map<E, Transit> event_TransitMap = state_eventMap.get(currState);
-      Transit transit = event_TransitMap.get(event);
-      String methodName = transit.callMethod();
-      Method callMethod = null;
-      callMethod = this.getClass().getMethod(methodName, getContextClass());
-      callMethod.invoke(this, context);
+    System.out.println("当前状态：" + currState);
+    System.out.println("事件：" + event);
+    //根据当前状态找到event map
+    Map<E, Transit> event_TransitMap = state_eventMap.get(currState);
+    Transit transit = event_TransitMap.get(event);
+    if (transit != null) {
+      try {
+        String methodName = transit.callMethod();
+        Method callMethod = null;
+        callMethod = this.getClass().getMethod(methodName, getContextClass());
+        callMethod.invoke(this, context);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
       currState = getRealState(transit.to());
-    } catch (Exception e) {
-      e.printStackTrace();
+    } else {
+      System.out.println("warning: no transit currState:" + currState + "event:" + event);
     }
   }
 

@@ -16,7 +16,8 @@ import tk.gbl.statemachine.engine.Context;
         @State(name = "READY"),
         @State(name = "PRE_SHOOT"),
         @State(name = "SHOOTING"),
-        @State(name = "SUF_SHOOT")
+        @State(name = "SUF_SHOOT"),
+        @State(name = "GAME_OVER"),
     })
 @Transitions({
     //就绪 -> 准备发射 on 按下空格
@@ -39,6 +40,8 @@ import tk.gbl.statemachine.engine.Context;
     //游戏结束 -> 就绪
     @Transit(from = "GAME_OVER", to = "READY", on = "READY", callMethod = "fromGameOverToReadyOnReady"),
     @Transit(from = "GAME_OVER", to = "GAME_OVER", on = "GAME_OVER", callMethod = "fromGameOverToGameOverOnGameOver"),
+    @Transit(from = "GAME_OVER", to = "PRE_SHOOT", on = "PRE_SHOOT", callMethod = "fromGameOverToPreShootOnPreShoot"),
+
 })
 @StateMachineParameters(stateType = DandanTangState.class, eventType = DandanTangEvent.class, contextType = Context.class)
 public class DandanTangStateMachine extends AbstractStateMachine<DandanTangEvent, DandanTangState, Context> {
@@ -77,7 +80,6 @@ public class DandanTangStateMachine extends AbstractStateMachine<DandanTangEvent
   }
 
   public void fromSufShootToReadyOnReady(Context context) throws Exception {
-    dandanTangGame.ready();
   }
 
   public void fromReadyToReadyOnReady(Context context) throws Exception {
@@ -98,6 +100,10 @@ public class DandanTangStateMachine extends AbstractStateMachine<DandanTangEvent
   }
 
   public void fromGameOverToGameOverOnGameOver(Context context) {
+
+  }
+
+  public void fromGameOverToPreShootOnPreShoot(Context context) {
 
   }
 }

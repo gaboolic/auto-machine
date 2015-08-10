@@ -41,6 +41,7 @@ public class DandanTangGame {
     }.start();
   }
 
+
   public void ready() {
     InfoSpider.getWind();
     DistanceInfo distanceInfo = InfoSpider.getDistanceInfo();
@@ -58,7 +59,7 @@ public class DandanTangGame {
     stateMachine.fire(DandanTangEvent.SHOOT);
 
     try {
-      Thread.sleep(4000);
+      Thread.sleep(3000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
@@ -78,7 +79,7 @@ public class DandanTangGame {
 
     System.err.println("游戏结束，重新开始");
     try {
-      Thread.sleep(5000);
+      Thread.sleep(15000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
