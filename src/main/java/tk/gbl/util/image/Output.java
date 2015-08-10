@@ -7,6 +7,18 @@ package tk.gbl.util.image;
  * @author Tian.Dong
  */
 public class Output {
+
+  public static String arrToString(int[][] img) {
+    StringBuilder stringBuilder = new StringBuilder();
+    for (int h = 0; h < img.length; h++) {
+      for (int w = 0; w < img[h].length; w++) {
+        stringBuilder.append(img[h][w]);
+      }
+      stringBuilder.append("\n");
+    }
+    return stringBuilder.toString();
+  }
+
   public static void output(int[][] img) {
     System.out.println("***");
     for (int h = 0; h < img.length; h++) {

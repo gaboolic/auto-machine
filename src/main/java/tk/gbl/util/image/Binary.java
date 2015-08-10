@@ -15,6 +15,63 @@ import java.io.IOException;
  * @author Tian.Dong
  */
 public class Binary {
+  public static int[][] deal(BufferedImage bufferedImage,int threshold) {
+    int h = bufferedImage.getHeight();
+    int w = bufferedImage.getWidth();
+    //System.out.println(h + " " + w);
+    int[][] img = new int[h][w];
+
+    // 灰度化
+    int[][] gray = new int[w][h];
+    for (int x = 0; x < w; x++) {
+      for (int y = 0; y < h; y++) {
+        int argb = bufferedImage.getRGB(x, y);
+        // 图像加亮（调整亮度识别率非常高）
+        int r = (int) (((argb >> 16) & 0xFF)  );
+        int g = (int) (((argb >> 8) & 0xFF)  );
+        int b = (int) (((argb >> 0) & 0xFF)  );
+        if (r >= 255) {
+          r = 255;
+        }
+        if (g >= 255) {
+          g = 255;
+        }
+        if (b >= 255) {
+          b = 255;
+        }
+        gray[x][y] = (int) Math.pow((Math.pow(r, 2.2) * 0.2973 + Math.pow(g, 2.2) * 0.6274 + Math.pow(b, 2.2) * 0.0753), 1 / 2.2);
+//        gray[x][y] = argb;
+      }
+    }
+
+
+    // 二值化
+    BufferedImage binaryBufferedImage = new BufferedImage(w, h, BufferedImage.TYPE_BYTE_BINARY);
+    for (int x = 0; x < w; x++) {
+      for (int y = 0; y < h; y++) {
+        if (gray[x][y] > threshold) {
+          gray[x][y] |= 0x00FFFF;
+        } else {
+          gray[x][y] &= 0xFF0000;
+        }
+        binaryBufferedImage.setRGB(x, y, gray[x][y]);
+      }
+    }
+
+    // 矩阵打印
+    for (int y = 0; y < h; y++) {
+      for (int x = 0; x < w; x++) {
+        if (isBlack(binaryBufferedImage.getRGB(x, y))) {
+          img[y][x] = 1;
+        } else {
+          img[y][x] = 0;
+        }
+      }
+    }
+
+    return img;
+  }
+
   public static int[][] deal(BufferedImage bufferedImage) {
     int h = bufferedImage.getHeight();
     int w = bufferedImage.getWidth();
@@ -72,11 +129,25 @@ public class Binary {
 
     return img;
   }
-  public static int[][] deal(File file) throws IOException {
+  public static int[][] deal(File file) {
 
-    BufferedImage bufferedImage = ImageIO.read(file);
+    BufferedImage bufferedImage = null;
+    try {
+      bufferedImage = ImageIO.read(file);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     return deal(bufferedImage);
 
+  }
+  public static int _ostu(int[][] gray, int w, int h) {
+    int sum = 0;
+    for (int x = 0; x < w; x++) {
+      for (int y = 0; y < h; y++) {
+        sum += gray[x][y];
+      }
+    }
+    return sum/w/h;
   }
 
   public static int ostu(int[][] gray, int w, int h) {

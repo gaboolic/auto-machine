@@ -3,6 +3,7 @@ package tk.gbl.game.dandantang;
 import tk.gbl.game.dandantang.bean.DistanceInfo;
 import tk.gbl.game.dandantang.bean.SelfInfo;
 import tk.gbl.game.dandantang.recognition.InfoSpider;
+import tk.gbl.game.dandantang.recognition.WindInfoSpider;
 import tk.gbl.statemachine.instance.dandantang.DandanTangEvent;
 import tk.gbl.statemachine.instance.dandantang.DandanTangStateMachine;
 
@@ -43,7 +44,7 @@ public class DandanTangGame {
 
 
   public void ready() {
-    InfoSpider.getWind();
+    WindInfoSpider.getWind();
     DistanceInfo distanceInfo = InfoSpider.getDistanceInfo();
     SelfInfo selfInfo = GameControl.revise(distanceInfo);
 

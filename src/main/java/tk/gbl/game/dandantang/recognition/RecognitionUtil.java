@@ -84,7 +84,7 @@ public class RecognitionUtil {
     int r = (int) (((rgb >> 16) & 0xFF));
     int g = (int) (((rgb >> 8) & 0xFF));
     int b = (int) (((rgb >> 0) & 0xFF));
-    if (r == 102 && g ==102 && b ==102) {
+    if (r == 102 && g == 102 && b == 102) {
       return true;
     }
     return false;
@@ -94,7 +94,27 @@ public class RecognitionUtil {
     int r = (int) (((rgb >> 16) & 0xFF));
     int g = (int) (((rgb >> 8) & 0xFF));
     int b = (int) (((rgb >> 0) & 0xFF));
-    if (r == 153 && g ==153 && b ==153) {
+    if (r == 153 && g == 153 && b == 153) {
+      return true;
+    }
+    return false;
+  }
+
+  public static boolean isWindGrey(int rgb) {
+    int r = (int) (((rgb >> 16) & 0xFF));
+    int g = (int) (((rgb >> 8) & 0xFF));
+    int b = (int) (((rgb >> 0) & 0xFF));
+    if (r <= 100 && g <= 100 && b <= 100) {
+      return true;
+    }
+    return false;
+  }
+
+  public static boolean isWindBlue(int rgb) {
+    int r = (int) (((rgb >> 16) & 0xFF));
+    int g = (int) (((rgb >> 8) & 0xFF));
+    int b = (int) (((rgb >> 0) & 0xFF));
+    if (r == 118 && g == 118 && b == 232) {
       return true;
     }
     return false;

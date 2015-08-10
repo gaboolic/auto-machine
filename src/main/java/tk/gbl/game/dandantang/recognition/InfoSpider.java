@@ -3,7 +3,6 @@ package tk.gbl.game.dandantang.recognition;
 import tk.gbl.game.dandantang.GlobalValue;
 import tk.gbl.game.dandantang.bean.DistanceInfo;
 import tk.gbl.game.dandantang.bean.SelfInfo;
-import tk.gbl.game.dandantang.bean.Wind;
 import tk.gbl.util.FatArrayList;
 import tk.gbl.util.ScreenUtil;
 import tk.gbl.util.image.Binary;
@@ -25,16 +24,7 @@ public class InfoSpider {
 
   static String filePath = "F:\\workProject\\gaboolic\\auto-machine\\image";
 
-  /**
-   * 风
-   */
-  public static Wind getWind() {
-    //675 89
-    //729 132
-    BufferedImage windImage = ScreenUtil.getScreenPart(637, 90, 80, 40);
-    ImageFile.imageToFile(windImage, new File(filePath + "\\wind", System.currentTimeMillis() + ".png"));
-    return null;
-  }
+
 
   /**
    * 角度，方向
