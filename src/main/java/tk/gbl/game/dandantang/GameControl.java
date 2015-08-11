@@ -2,8 +2,11 @@ package tk.gbl.game.dandantang;
 
 import tk.gbl.game.dandantang.bean.DistanceInfo;
 import tk.gbl.game.dandantang.bean.SelfInfo;
+import tk.gbl.game.dandantang.bean.Wind;
 import tk.gbl.game.dandantang.bean.WorldInfo;
 import tk.gbl.game.dandantang.recognition.InfoSpider;
+import tk.gbl.game.dandantang.recognition.WindInfoSpider;
+import tk.gbl.util.SpeakUtil;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -54,15 +57,26 @@ public class GameControl {
       robot.keyRelease(KeyEvent.VK_UP);
     }
     SelfInfo selfInfo = InfoSpider.getSelfInfo();
-
     //把向左的，等效为向右的情况
     distanceInfo.setWidth(Math.abs(distanceInfo.getWidth()));
+
+    double a = 0;//风力引起的x轴加速度
+    Wind wind = WindInfoSpider.getWind();
+    if(wind.isLeft()) {
+      a = 0;
+      SpeakUtil.speak("风向为 左");
+      SpeakUtil.speak("风力为"+wind.getValue());
+    } else {
+      a = 0;
+      SpeakUtil.speak("风向为 左");
+      SpeakUtil.speak("风力为"+wind.getValue());
+    }
 
     double radian = selfInfo.getAngle() * 2 * Math.PI / 360;
     double tan = Math.tan(radian);
     double cos = Math.cos(radian);
-    double up = WorldInfo.getGravity() * distanceInfo.getWidth() * distanceInfo.getWidth();
-    double down = 2 * (tan * distanceInfo.getWidth() - distanceInfo.getHeight());
+    double up = WorldInfo.getGravity() * distanceInfo.getWidth();
+    double down = 2 * (tan - distanceInfo.getHeight() / distanceInfo.getWidth() + a * tan * tan / WorldInfo.getGravity());
     double vx = Math.sqrt(up / down);
     double v = vx / cos;
 
