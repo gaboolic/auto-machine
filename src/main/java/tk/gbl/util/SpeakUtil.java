@@ -1,7 +1,5 @@
 package tk.gbl.util;
 
-import java.io.IOException;
-
 /**
  * Date: 2015/8/11
  * Time: 22:01
@@ -15,9 +13,12 @@ public class SpeakUtil {
     String[] cpCmd  = new String[]{"wscript", fileName,str};
     try {
       Process process = Runtime.getRuntime().exec(cpCmd);
-    } catch (IOException e) {
+      int val = process.waitFor();
+      process.destroy();
+    } catch (Exception e) {
       e.printStackTrace();
     }
+    System.out.println("Speak:"+str);
   }
 
 }

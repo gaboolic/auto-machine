@@ -33,7 +33,12 @@ public class WindInfoSpider {
 
     String left = makeOutLeftNumber(leftImage);
     String right = makeOutRightNumber(rightImage);
-    return null;
+    boolean isLeft = isLeft(windImage);
+
+    Wind wind = new Wind();
+    wind.setLeft(isLeft);
+    wind.setValue(Double.valueOf(left));
+    return wind;
   }
 
   public static boolean isLeft(BufferedImage image) {

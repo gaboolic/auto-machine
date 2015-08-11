@@ -6,6 +6,7 @@ import tk.gbl.game.dandantang.recognition.InfoSpider;
 import tk.gbl.game.dandantang.recognition.WindInfoSpider;
 import tk.gbl.statemachine.instance.dandantang.DandanTangEvent;
 import tk.gbl.statemachine.instance.dandantang.DandanTangStateMachine;
+import tk.gbl.util.SpeakUtil;
 
 /**
  * Date: 2015/8/1
@@ -79,6 +80,7 @@ public class DandanTangGame {
     GlobalValue.redOrBlue = null;
 
     System.err.println("游戏结束，重新开始");
+    SpeakUtil.speak("游戏结束，重新开始");
     try {
       Thread.sleep(15000);
     } catch (InterruptedException e) {

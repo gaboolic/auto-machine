@@ -57,6 +57,7 @@ public class GameControl {
       robot.keyRelease(KeyEvent.VK_UP);
     }
     SelfInfo selfInfo = InfoSpider.getSelfInfo();
+
     //把向左的，等效为向右的情况
     distanceInfo.setWidth(Math.abs(distanceInfo.getWidth()));
 
@@ -64,12 +65,12 @@ public class GameControl {
     Wind wind = WindInfoSpider.getWind();
     if(wind.isLeft()) {
       a = 0;
-      SpeakUtil.speak("风向为 左");
-      SpeakUtil.speak("风力为"+wind.getValue());
+      SpeakUtil.speak("左");
+      SpeakUtil.speak("风力"+wind.getValue());
     } else {
       a = 0;
-      SpeakUtil.speak("风向为 左");
-      SpeakUtil.speak("风力为"+wind.getValue());
+      SpeakUtil.speak("右");
+      SpeakUtil.speak("风力"+wind.getValue());
     }
 
     double radian = selfInfo.getAngle() * 2 * Math.PI / 360;
@@ -82,11 +83,9 @@ public class GameControl {
 
     selfInfo.setPower(v / WorldInfo.getPowerRatio());
 
-    System.out.println("revise");
     System.out.println("selfInfo" + selfInfo);
     System.out.println("distanceInfo" + distanceInfo);
 
-    System.out.println("速度" + v);
 
     robot.keyPress(KeyEvent.VK_B);
     robot.keyPress(KeyEvent.VK_1);
