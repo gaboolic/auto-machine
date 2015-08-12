@@ -6,7 +6,6 @@ import tk.gbl.game.dandantang.bean.Wind;
 import tk.gbl.game.dandantang.bean.WorldInfo;
 import tk.gbl.game.dandantang.recognition.InfoSpider;
 import tk.gbl.game.dandantang.recognition.WindInfoSpider;
-import tk.gbl.util.SpeakUtil;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -60,11 +59,6 @@ public class GameControl {
 
     double a = 0;//风力引起的x轴加速度
     Wind wind = WindInfoSpider.getWind();
-    if (wind.isLeft()) {
-      SpeakUtil.speak("左,风力" + wind.getValue());
-    } else {
-      SpeakUtil.speak("右,风力" + wind.getValue());
-    }
     a = wind.getValue();
     if ((wind.isLeft() && distanceInfo.getWidth() < 0)
         || (!wind.isLeft() && distanceInfo.getWidth() > 0)) {
@@ -89,7 +83,10 @@ public class GameControl {
     System.out.println("windInfo:" + wind);
     System.out.println("distanceInfo:" + distanceInfo);
     System.out.println("selfInfo:" + selfInfo);
-    SpeakUtil.speak("力量" + Math.round(selfInfo.getPower()));
+    GlobalValue.wind = wind;
+    GlobalValue.distanceInfo = distanceInfo;
+    GlobalValue.selfInfo = selfInfo;
+    GlobalValue.infoFrame.refreshInfo();
 
     robot.keyPress(KeyEvent.VK_B);
     robot.keyPress(KeyEvent.VK_1);

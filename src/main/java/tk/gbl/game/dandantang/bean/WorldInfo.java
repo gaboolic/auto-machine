@@ -22,7 +22,7 @@ public class WorldInfo {
   /**
    * 风力系数
    */
-  public static double windRatio = 1.0;
+  public static double windRatio = 0.7;
 
   public static double getGravity() {
     return gravity;
