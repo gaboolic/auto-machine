@@ -2,6 +2,7 @@ package tk.gbl.game.dandantang;
 
 import tk.gbl.game.dandantang.bean.DistanceInfo;
 import tk.gbl.game.dandantang.bean.SelfInfo;
+import tk.gbl.game.dandantang.bean.Wind;
 import tk.gbl.game.dandantang.recognition.InfoSpider;
 import tk.gbl.game.dandantang.recognition.WindInfoSpider;
 import tk.gbl.statemachine.instance.dandantang.DandanTangEvent;

@@ -42,8 +42,25 @@ public class WindInfoSpider {
   }
 
   public static boolean isLeft(BufferedImage image) {
+    //左风 13~56都是黑
+    int[][] img = Binary.deal(image);
+//    Output.output(img);
+    int whiteCount = 0;
+    int whiteCount2 = 0;
+    for (int w = 13; w < 56; w++) {
+      int argb = img[5][w];
+      int argb2 = img[6][w];
+      if (argb == 0) {
+        whiteCount++;
+      }
+      if (argb2 == 0) {
+        whiteCount2++;
+      }
+    }
 
-    for (int w = 0; w < image.getWidth(); w++) {
+    return whiteCount < 5 || whiteCount2 < 5;
+
+    /*for (int w = 0; w < image.getWidth(); w++) {
       int argb = image.getRGB(w, 33);
       if (RecognitionUtil.isWindBlue(argb)) {
         //箭头在右边，风从左边吹，是左风
@@ -51,7 +68,7 @@ public class WindInfoSpider {
         return w > image.getWidth() / 2;
       }
     }
-    return true;
+    return true;*/
   }
 
 
@@ -73,7 +90,7 @@ public class WindInfoSpider {
 
   public static String makeOutRightNumber(BufferedImage image) {
     int[][] img = Binary.deal(image);
-    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind_l");
+    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind_r");
     String x = null;
     int distance = 10000;
     for (File file : path.listFiles()) {

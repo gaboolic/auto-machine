@@ -10,12 +10,12 @@ public class Wind {
   /**
    * 左右
    */
-  boolean isLeft;
+  boolean isLeft = true;
 
   /**
    * 风力值
    */
-  double value;
+  double value = 0;
 
   public boolean isLeft() {
     return isLeft;
@@ -31,5 +31,13 @@ public class Wind {
 
   public void setValue(double value) {
     this.value = value;
+  }
+
+  @Override
+  public String toString() {
+    return "Wind{" +
+        "isLeft=" + isLeft +
+        ", value=" + value +
+        '}';
   }
 }

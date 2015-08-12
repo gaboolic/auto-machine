@@ -21,30 +21,37 @@ import java.util.Set;
 public class WindTest {
 
   @Test
-  public void test111(){
+  public void test111() {
     File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind\\1439214733067.png");
     BufferedImage image = ImageFile.fileToImage(file);
     System.out.println(WindInfoSpider.makeOutLeftNumber(image));
   }
 
   @Test
-  public void testLeftOrRight() {
-    File file1 = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind\\l-l-l-l-r-1438434430717.png");
-    BufferedImage image1= ImageFile.fileToImage(file1);
+  public void testLeftOrRight() throws IOException {
+    File file1 = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind__\\r-1439349624909.png");
+    BufferedImage image = ImageFile.fileToImage(file1);
+    boolean isLeft = WindInfoSpider.isLeft(image);
 
-    System.out.println(WindInfoSpider.isLeft(image1));
+    System.out.println(isLeft);
+  }
 
-    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind");
+  @Test
+  public void testDealLeftOrRight() throws IOException {
+
+
+    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind__");
     for (File file : path.listFiles()) {
       BufferedImage image = ImageFile.fileToImage(file);
 
+      //      int[][] img = Binary.deal(image);
+      //      ArrayToImage.createImage(img,file);
       boolean isLeft = WindInfoSpider.isLeft(image);
-      if(isLeft) {
-        boolean flag = file.renameTo(new File(path, "l-"+file.getName()));
+      if (isLeft) {
+        boolean flag = file.renameTo(new File(path, "l-" + System.currentTimeMillis() + ".png"));
       } else {
-        boolean flag = file.renameTo(new File(path, "r-"+file.getName()));
+        boolean flag = file.renameTo(new File(path, "r-" + System.currentTimeMillis() + ".png"));
       }
-
     }
   }
 

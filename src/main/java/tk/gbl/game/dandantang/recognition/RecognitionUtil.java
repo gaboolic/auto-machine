@@ -119,4 +119,14 @@ public class RecognitionUtil {
     }
     return false;
   }
+
+  public static boolean isBlack(int rgb) {
+    int r = (int) (((rgb >> 16) & 0xFF));
+    int g = (int) (((rgb >> 8) & 0xFF));
+    int b = (int) (((rgb >> 0) & 0xFF));
+    if (r >= 200 && g >= 200 && b >= 200) {
+      return true;
+    }
+    return false;
+  }
 }

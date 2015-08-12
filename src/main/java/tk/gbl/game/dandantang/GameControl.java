@@ -58,20 +58,34 @@ public class GameControl {
     }
     SelfInfo selfInfo = InfoSpider.getSelfInfo();
 
+    double a = 0;//风力引起的x轴加速度
+    Wind wind = WindInfoSpider.getWind();
+    if (wind.isLeft()) {
+      SpeakUtil.speak("左,");
+      SpeakUtil.speak("风力" + wind.getValue());
+    } else {
+      SpeakUtil.speak("右,");
+      SpeakUtil.speak("风力" + wind.getValue());
+    }
+    if (wind.isLeft()) {
+      //风从左往右
+      if (distanceInfo.getWidth() > 0) {
+        a = wind.getValue();
+      } else {
+        a = -wind.getValue();
+      }
+    } else {
+      //风从右往左
+      if (distanceInfo.getWidth() > 0) {
+        a = -wind.getValue();
+      } else {
+        a = wind.getValue();
+      }
+    }
+    a=0;
     //把向左的，等效为向右的情况
     distanceInfo.setWidth(Math.abs(distanceInfo.getWidth()));
 
-    double a = 0;//风力引起的x轴加速度
-    Wind wind = WindInfoSpider.getWind();
-    if(wind.isLeft()) {
-      a = 0;
-      SpeakUtil.speak("左");
-      SpeakUtil.speak("风力"+wind.getValue());
-    } else {
-      a = 0;
-      SpeakUtil.speak("右");
-      SpeakUtil.speak("风力"+wind.getValue());
-    }
 
     double radian = selfInfo.getAngle() * 2 * Math.PI / 360;
     double tan = Math.tan(radian);
@@ -83,9 +97,10 @@ public class GameControl {
 
     selfInfo.setPower(v / WorldInfo.getPowerRatio());
 
-    System.out.println("selfInfo" + selfInfo);
-    System.out.println("distanceInfo" + distanceInfo);
-
+    System.out.println("windInfo:" + wind);
+    System.out.println("distanceInfo:" + distanceInfo);
+    System.out.println("selfInfo:" + selfInfo);
+    SpeakUtil.speak("力量" + Math.round(selfInfo.getPower()) );
 
     robot.keyPress(KeyEvent.VK_B);
     robot.keyPress(KeyEvent.VK_1);
