@@ -23,22 +23,27 @@ public class WindInfoSpider {
    * 风
    */
   public static Wind getWind() {
-    //675 89
-    //729 132
-    BufferedImage windImage = ScreenUtil.getScreenPart(637, 90, 80, 40);
-    ImageFile.imageToFile(windImage, new File(filePath + "\\wind", System.currentTimeMillis() + ".png"));
+    try {
+      //675 89
+      //729 132
+      BufferedImage windImage = ScreenUtil.getScreenPart(637, 90, 80, 40);
+      ImageFile.imageToFile(windImage, new File(filePath + "\\wind", System.currentTimeMillis() + ".png"));
 
-    BufferedImage leftImage = windImage.getSubimage(26, 8, 16, 22);
-    BufferedImage rightImage = windImage.getSubimage(46, 8, 16, 22);
+      BufferedImage leftImage = windImage.getSubimage(26, 8, 16, 22);
+      BufferedImage rightImage = windImage.getSubimage(46, 8, 16, 22);
 
-    String left = makeOutLeftNumber(leftImage);
-    String right = makeOutRightNumber(rightImage);
-    boolean isLeft = isLeft(windImage);
+      String left = makeOutLeftNumber(leftImage);
+      String right = makeOutRightNumber(rightImage);
+      boolean isLeft = isLeft(windImage);
 
-    Wind wind = new Wind();
-    wind.setLeft(isLeft);
-    wind.setValue(Double.valueOf(left));
-    return wind;
+      Wind wind = new Wind();
+      wind.setLeft(isLeft);
+      wind.setValue(Double.valueOf(left));
+      return wind;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new Wind();
+    }
   }
 
   public static boolean isLeft(BufferedImage image) {

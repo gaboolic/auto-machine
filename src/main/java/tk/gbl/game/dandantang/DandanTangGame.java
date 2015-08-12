@@ -46,7 +46,6 @@ public class DandanTangGame {
 
 
   public void ready() {
-    WindInfoSpider.getWind();
     DistanceInfo distanceInfo = InfoSpider.getDistanceInfo();
     SelfInfo selfInfo = GameControl.revise(distanceInfo);
 

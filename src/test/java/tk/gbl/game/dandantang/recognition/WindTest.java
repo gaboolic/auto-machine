@@ -40,17 +40,22 @@ public class WindTest {
   public void testDealLeftOrRight() throws IOException {
 
 
-    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind__");
+    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind");
     for (File file : path.listFiles()) {
       BufferedImage image = ImageFile.fileToImage(file);
 
-      //      int[][] img = Binary.deal(image);
-      //      ArrayToImage.createImage(img,file);
+      BufferedImage leftImage = image.getSubimage(26, 8, 16, 22);
+//      int[][] leftImg = Binary.deal(leftImage);
+//      ArrayToImage.createImage(leftImg,new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind__\\"+System.currentTimeMillis()+".png"));
+
+
+      String left = WindInfoSpider.makeOutLeftNumber(leftImage);
+
       boolean isLeft = WindInfoSpider.isLeft(image);
       if (isLeft) {
-        boolean flag = file.renameTo(new File(path, "l-" + System.currentTimeMillis() + ".png"));
+        boolean flag = file.renameTo(new File(path, "l-" + left + "-" + System.currentTimeMillis() + ".png"));
       } else {
-        boolean flag = file.renameTo(new File(path, "r-" + System.currentTimeMillis() + ".png"));
+        boolean flag = file.renameTo(new File(path, "r-" + left + "-" + System.currentTimeMillis() + ".png"));
       }
     }
   }
