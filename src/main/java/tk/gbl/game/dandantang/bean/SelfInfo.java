@@ -16,7 +16,10 @@ public class SelfInfo {
   /**
    * 力量
    */
-  double power;
+  double power = 0.0;
+
+
+  double originalPower = 0.0;
 
   Integer leftOrRight;
 
@@ -45,11 +48,20 @@ public class SelfInfo {
     this.leftOrRight = leftOrRight;
   }
 
+  public double getOriginalPower() {
+    return originalPower;
+  }
+
+  public void setOriginalPower(double originalPower) {
+    this.originalPower = originalPower;
+  }
+
   @Override
   public String toString() {
     return "SelfInfo{" +
         "angle=" + angle +
         ", power=" + power +
+        ", originalPower=" + originalPower +
         ", leftOrRight=" + leftOrRight +
         '}';
   }

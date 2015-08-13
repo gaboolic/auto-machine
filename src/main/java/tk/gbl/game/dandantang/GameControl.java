@@ -80,6 +80,12 @@ public class GameControl {
 
     selfInfo.setPower(v / WorldInfo.getPowerRatio());
 
+    down = 2 * (tan - distanceInfo.getHeight() / distanceInfo.getWidth());
+    vx = Math.sqrt(up / down);
+    v = vx / cos;
+    selfInfo.setOriginalPower(v / WorldInfo.getPowerRatio());
+
+
     System.out.println("windInfo:" + wind);
     System.out.println("distanceInfo:" + distanceInfo);
     System.out.println("selfInfo:" + selfInfo);

@@ -28,7 +28,7 @@ public class InfoFrame extends JFrame {
     this.setUndecorated(true);//去掉JFrame的标题栏
     this.setAlwaysOnTop(true);
     this.setLayout(null);
-    this.setBounds(0, 100, 160, 500);
+    this.setBounds(1200, 100, 160, 500);
     this.setLayout(null);
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     this.setVisible(true);
@@ -67,7 +67,10 @@ public class InfoFrame extends JFrame {
     this.add(panel);
 
 
-    infoLabel.setText("角度：" + GlobalValue.selfInfo.getAngle() + ",力量：" + GlobalValue.selfInfo.getPower());
+    infoLabel.setText("角度：" + GlobalValue.selfInfo.getAngle()
+            + ",力量：" + Math.round(GlobalValue.selfInfo.getPower())
+            + ",原力：" + Math.round(GlobalValue.selfInfo.getOriginalPower())
+    );
     infoLabel.setBounds(0, 50, 200, 200);
     panel.add(infoLabel);
 
@@ -81,7 +84,10 @@ public class InfoFrame extends JFrame {
   }
 
   public void refreshInfo() {
-    infoLabel.setText("角度：" + Math.round(GlobalValue.selfInfo.getAngle()) + ",力量：" + Math.round(GlobalValue.selfInfo.getPower()));
+    infoLabel.setText("角度" + Math.round(GlobalValue.selfInfo.getAngle())
+            + ",力量：" + Math.round(GlobalValue.selfInfo.getPower())
+            + ",原力：" + Math.round(GlobalValue.selfInfo.getOriginalPower())
+    );
 
     windLabel.setText("风向左：" + GlobalValue.wind.isLeft() + ",风力：" + GlobalValue.wind.getValue());
 
