@@ -21,6 +21,10 @@ public class SelfInfo {
 
   double originalPower = 0.0;
 
+  /**
+   * 0 left
+   * 1 right
+   */
   Integer leftOrRight;
 
 

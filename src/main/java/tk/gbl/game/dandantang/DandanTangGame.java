@@ -61,7 +61,7 @@ public class DandanTangGame {
     GameControl.keyPressSpace();
     stateMachine.fire(DandanTangEvent.PRE_SHOOT);
     try {
-      Thread.sleep((long) (selfInfo.getPower() * 40 + 25));
+      Thread.sleep((long) (selfInfo.getPower() * 40 + 35));
     } catch (InterruptedException e) {
       e.printStackTrace();
     }

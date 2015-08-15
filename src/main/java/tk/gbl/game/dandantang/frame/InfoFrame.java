@@ -18,9 +18,11 @@ public class InfoFrame extends JFrame {
   Point origin = new Point();  //全局的位置变量，用于表示鼠标在窗口上的位置
 
 
+  JLabel globalLabel = new JLabel();
   JLabel infoLabel = new JLabel();
   JLabel windLabel = new JLabel();
   JLabel distanceLabel = new JLabel();
+  JLabel originalDistanceLabel = new JLabel();
 
 
   public InfoFrame() {
@@ -66,6 +68,10 @@ public class InfoFrame extends JFrame {
     panel.setLayout(null);
     this.add(panel);
 
+    globalLabel.setText("0左1右:" + GlobalValue.leftOrRight);
+    globalLabel.setBounds(0, 20, 200, 50);
+    panel.add(globalLabel);
+
 
     infoLabel.setText("角度：" + GlobalValue.selfInfo.getAngle()
             + ",力量：" + Math.round(GlobalValue.selfInfo.getPower())
@@ -78,12 +84,23 @@ public class InfoFrame extends JFrame {
     windLabel.setBounds(0, 150, 200, 200);
     panel.add(windLabel);
 
-    distanceLabel.setText("w：" + GlobalValue.selfInfo.getAngle() + ",h：" + GlobalValue.selfInfo.getPower());
+    distanceLabel.setText("w：" + Math.round(GlobalValue.distanceInfo.getWidth())
+            + ",h：" + Math.round(GlobalValue.distanceInfo.getHeight())
+    );
     distanceLabel.setBounds(0, 250, 200, 200);
     panel.add(distanceLabel);
+
+    originalDistanceLabel.setText("ow：" + Math.round(GlobalValue.distanceInfo.getOriginalWidth())
+            + ",oh：" + Math.round(GlobalValue.distanceInfo.getOriginalHeight())
+    );
+    originalDistanceLabel.setBounds(0, 300, 200, 200);
+    panel.add(originalDistanceLabel);
   }
 
   public void refreshInfo() {
+    globalLabel.setText("0左1右:" + GlobalValue.leftOrRight);
+
+
     infoLabel.setText("角度" + Math.round(GlobalValue.selfInfo.getAngle())
             + ",力量：" + Math.round(GlobalValue.selfInfo.getPower())
             + ",原力：" + Math.round(GlobalValue.selfInfo.getOriginalPower())
@@ -91,7 +108,13 @@ public class InfoFrame extends JFrame {
 
     windLabel.setText("风向左：" + GlobalValue.wind.isLeft() + ",风力：" + GlobalValue.wind.getValue());
 
-    distanceLabel.setText("w：" + Math.round(GlobalValue.distanceInfo.getWidth()) + ",h：" + Math.round(GlobalValue.distanceInfo.getHeight()));
+    distanceLabel.setText("w：" + Math.round(GlobalValue.distanceInfo.getWidth())
+            + ",h：" + Math.round(GlobalValue.distanceInfo.getHeight())
+    );
+
+    originalDistanceLabel.setText("ow：" + Math.round(GlobalValue.distanceInfo.getOriginalWidth())
+            + ",oh：" + Math.round(GlobalValue.distanceInfo.getOriginalHeight())
+    );
   }
 
 

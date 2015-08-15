@@ -9,6 +9,9 @@ import tk.gbl.util.image.Point;
  * @author Tian.Dong
  */
 public class DistanceInfo {
+  double originalWidth;
+  double originalHeight;
+
   double width;
 
   double height;
@@ -80,5 +83,21 @@ public class DistanceInfo {
       this.width = -this.width;
       this.height = -this.height;
     }
+  }
+
+  public double getOriginalWidth() {
+    return originalWidth;
+  }
+
+  public void setOriginalWidth(double originalWidth) {
+    this.originalWidth = originalWidth;
+  }
+
+  public double getOriginalHeight() {
+    return originalHeight;
+  }
+
+  public void setOriginalHeight(double originalHeight) {
+    this.originalHeight = originalHeight;
   }
 }

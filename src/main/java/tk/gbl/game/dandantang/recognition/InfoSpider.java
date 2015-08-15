@@ -147,11 +147,11 @@ public class InfoSpider {
   public static boolean getReadyInfo() {
     //332 655
     BufferedImage readyInfo = ScreenUtil.getScreenPart(658, 234, 50, 20);
-//    ImageFile.imageToFile(readyInfo, new File(filePath + "\\ready", System.currentTimeMillis() + ".png"));
+    ImageFile.imageToFile(readyInfo, new File(filePath + "\\ready", System.currentTimeMillis() + ".png"));
     int[][] readyImage = Binary.deal(readyInfo);
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
     int distance2 = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage2);
-    return distance < 220 || distance2 < 220;
+    return distance < 250 || distance2 < 250;
   }
 
 
