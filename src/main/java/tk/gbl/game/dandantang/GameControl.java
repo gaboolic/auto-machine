@@ -49,11 +49,30 @@ public class GameControl {
         robot.keyRelease(KeyEvent.VK_LEFT);
         GlobalValue.leftOrRight = 1;
       }
+    } else {
+      if (distanceInfo.getWidth() > 0) {
+        if(GlobalValue.leftOrRight == 1) {
+          robot.keyPress(KeyEvent.VK_RIGHT);
+          robot.keyRelease(KeyEvent.VK_RIGHT);
+          GlobalValue.leftOrRight = 0;
+        }
+      } else {
+        if(GlobalValue.leftOrRight == 0) {
+          robot.keyPress(KeyEvent.VK_LEFT);
+          robot.keyRelease(KeyEvent.VK_LEFT);
+          GlobalValue.leftOrRight = 1;
+        }
+      }
     }
-    int count = 0;
+    int count = 10;
     while (count-- > 0) {
       robot.keyPress(KeyEvent.VK_UP);
       robot.keyRelease(KeyEvent.VK_UP);
+    }
+    try {
+      Thread.sleep(200);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
     SelfInfo selfInfo = InfoSpider.getSelfInfo();
 

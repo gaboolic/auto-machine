@@ -85,7 +85,7 @@ public class DistanceRevise {
     }
     System.out.println("前" + distanceInfo.getWidth() + "_" + distanceInfo.getHeight());
     distanceInfo.setWidth(distanceInfo.getWidth() / length * 1000);
-    distanceInfo.setHeight(distanceInfo.getHeight() / length * 900);
+    distanceInfo.setHeight(distanceInfo.getHeight() / length * 1000);
     System.out.println("后" + distanceInfo.getWidth() + "_" + distanceInfo.getHeight());
 
 
