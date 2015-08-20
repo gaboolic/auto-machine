@@ -37,6 +37,30 @@ public class WindTest {
   }
 
   @Test
+  public void testDealWind_() {
+    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind_");
+    for (File file : path.listFiles()) {
+      if(file.getName().startsWith("r")){
+        continue;
+      }
+      BufferedImage image = ImageFile.fileToImage(file);
+
+//      int[][] leftImg = Binary.deal(leftImage);
+//      ArrayToImage.createImage(leftImg,new File("F:\\workProject\\gaboolic\\auto-machine\\image\\wind__\\"+System.currentTimeMillis()+".png"));
+
+
+      String left = WindInfoSpider.makeOutLeftNumber(image);
+
+      //boolean isLeft = WindInfoSpider.isLeft(image);
+      String fileName = file.getName();
+      fileName = fileName.substring(0, 1) + "-" + left + "-"+System.currentTimeMillis() + ".png";
+
+      file.renameTo(new File(path, fileName));
+
+    }
+  }
+
+  @Test
   public void testDealLeftOrRight() throws IOException {
 
 
