@@ -20,7 +20,9 @@ import java.util.Collections;
  *
  * @author Tian.Dong
  */
-public class InfoSpider {
+public class InfoSpider implements Constant {
+
+
 
   static String filePath = "F:\\workProject\\gaboolic\\auto-machine\\image";
 
@@ -30,7 +32,7 @@ public class InfoSpider {
    */
   public static SelfInfo getSelfInfo() {
     //222 624     252 651
-    BufferedImage angleImage = ScreenUtil.getScreenPart(221, 635, 24, 13);
+    BufferedImage angleImage = ScreenUtil.getScreenPart(221+offsetX, 635+offsetY, 24, 13);
     ImageFile.imageToFile(angleImage, new File(filePath + "\\angle", System.currentTimeMillis() + ".png"));
     int angle = RecognitionUtil.getAngle(angleImage);
 
@@ -39,7 +41,7 @@ public class InfoSpider {
     selfInfo.setAngle(angle);
 
     //233 625 left right
-    BufferedImage powerLeftRightImage = ScreenUtil.getScreenPart(227, 632, 10, 10);
+    BufferedImage powerLeftRightImage = ScreenUtil.getScreenPart(227+offsetX, 632+offsetY, 10, 10);
 //    ImageFile.imageToFile(powerLeftRightImage, new File(filePath + "\\powerLeftRightImage", System.currentTimeMillis() + ".png"));
 
 
@@ -51,7 +53,7 @@ public class InfoSpider {
    * 距离信息
    */
   public static DistanceInfo getDistanceInfo() {
-    BufferedImage distanceImage = ScreenUtil.getScreenPart(940, 100, 255, 105);
+    BufferedImage distanceImage = ScreenUtil.getScreenPart(940+offsetX, 100+offsetY, 255, 105);
     ImageFile.imageToFile(distanceImage, new File(filePath + "\\distance", System.currentTimeMillis() + ".png"));
 
     //坐标
@@ -85,7 +87,7 @@ public class InfoSpider {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-      BufferedImage image = ScreenUtil.getScreenPart(940, 100, 255, 105);
+      BufferedImage image = ScreenUtil.getScreenPart(940+offsetX, 100+offsetY, 255, 105);
       for (int i = rh; i < rh + 15; i++) {
         int newRgb = image.getRGB(rw, i);
         if (!redRgbList.get(i - rh).equals(newRgb)) {
@@ -176,19 +178,20 @@ public class InfoSpider {
     return distanceInfo;
   }
 
-  public static boolean getReadyInfo() {
+  public static boolean getReadyInfo() { //658 253
     //332 655
-    BufferedImage readyInfo = ScreenUtil.getScreenPart(658, 234, 50, 20);
+    BufferedImage readyInfo = ScreenUtil.getScreenPart(658+offsetX, 234+offsetY, 50, 20);
     ImageFile.imageToFile(readyInfo, new File(filePath + "\\ready", System.currentTimeMillis() + ".png"));
     int[][] readyImage = Binary.deal(readyInfo);
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
     int distance2 = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage2);
+    System.out.println("ready:"+distance+":"+distance2);
     return distance < 250 || distance2 < 250;
   }
 
 
   public static boolean getOverInfo() {
-    BufferedImage overInfo = ScreenUtil.getScreenPart(933, 108, 151, 38);
+    BufferedImage overInfo = ScreenUtil.getScreenPart(933+offsetX, 108+offsetY, 151, 38);
 //    ImageFile.imageToFile(overInfo, new File(filePath + "\\over", System.currentTimeMillis() + ".png"));
     int[][] overImage = Binary.deal(overInfo);
     int distance = Distance.hamDistance(overImage, OverImageArrayInstance.overImage);

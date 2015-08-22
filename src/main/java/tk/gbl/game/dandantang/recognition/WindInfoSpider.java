@@ -15,7 +15,7 @@ import java.io.File;
  *
  * @author Tian.Dong
  */
-public class WindInfoSpider {
+public class WindInfoSpider implements Constant{
   static String filePath = "F:\\workProject\\gaboolic\\auto-machine\\image";
 
 
@@ -26,7 +26,7 @@ public class WindInfoSpider {
     try {
       //675 89
       //729 132
-      BufferedImage windImage = ScreenUtil.getScreenPart(637, 90, 80, 40);
+      BufferedImage windImage = ScreenUtil.getScreenPart(637+offsetX, 90+offsetY, 80, 40);
       ImageFile.imageToFile(windImage, new File(filePath + "\\wind", System.currentTimeMillis() + ".png"));
 
       BufferedImage leftImage = windImage.getSubimage(26, 8, 16, 22);
