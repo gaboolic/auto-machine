@@ -25,7 +25,6 @@ public class InfoSpider {
   static String filePath = "F:\\workProject\\gaboolic\\auto-machine\\image";
 
 
-
   /**
    * 角度，方向
    */
@@ -135,8 +134,41 @@ public class InfoSpider {
     int redX = redXList.getMedian();
     int redY = redYList.getMedian();
 
+
     int blueX = blueXList.getMedian();
     int blueY = blueYList.getMedian();
+
+    //再次定位
+    redXList = new FatArrayList<>();
+    redYList = new FatArrayList<>();
+    blueXList = new FatArrayList<>();
+    blueYList = new FatArrayList<>();
+    for (int w = redX - 7 > 0 ? redX - 7 : 0; w < (redX + 7 < distanceImage.getWidth() ? redX + 7 : distanceImage.getWidth()); w++) {
+      for (int h = redY - 7 > 0 ? redY - 7 : 0; h < (redY + 7 < distanceImage.getHeight() ? redY + 7 : distanceImage.getHeight()); h++) {
+        int argb = distanceImage.getRGB(w, h);
+        if (RecognitionUtil.isRed(argb)) {
+          redXList.add(w);
+          redYList.add(h);
+        }
+      }
+    }
+    for (int w = blueX - 7 > 0 ? blueX - 7 : 0; w < (blueX + 7 < distanceImage.getWidth() ? blueX + 7 : distanceImage.getWidth()); w++) {
+      for (int h = blueY - 7 > 0 ? blueY - 7 : 0; h < (blueY + 7 < distanceImage.getHeight() ? blueY + 7 : distanceImage.getHeight()); h++) {
+        int argb = distanceImage.getRGB(w, h);
+        if (RecognitionUtil.isBlue(argb)) {
+          blueXList.add(w);
+          blueYList.add(h);
+        }
+      }
+    }
+    Collections.sort(redXList);
+    Collections.sort(redYList);
+    Collections.sort(blueXList);
+    Collections.sort(blueYList);
+    redX = redXList.getMedian();
+    redY = redYList.getMedian();
+    blueX = blueXList.getMedian();
+    blueY = blueYList.getMedian();
 
     DistanceInfo distanceInfo = new DistanceInfo();
     distanceInfo.setRed(new Point(redX, redY));

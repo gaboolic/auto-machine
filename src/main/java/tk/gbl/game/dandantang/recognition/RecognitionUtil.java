@@ -41,7 +41,7 @@ public class RecognitionUtil {
     int r = (int) (((rgb >> 16) & 0xFF));
     int g = (int) (((rgb >> 8) & 0xFF));
     int b = (int) (((rgb >> 0) & 0xFF));
-    if (r <= 55 && g <= 55 && b >= 200) {
+    if (r ==0 && g ==51 && b==204) {
       return true;
     }
     return false;
@@ -63,7 +63,7 @@ public class RecognitionUtil {
     int r = (int) (((rgb >> 16) & 0xFF));
     int g = (int) (((rgb >> 8) & 0xFF));
     int b = (int) (((rgb >> 0) & 0xFF));
-    if (r >= 200 && g <= 55 && b <= 55) {
+    if (r ==255 && g ==0 && b ==0) {
       return true;
     }
     return false;

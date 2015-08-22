@@ -14,15 +14,36 @@ import java.io.File;
  * @author Tian.Dong
  */
 public class DistanceTest {
+
+  @Test
+  public void testSingle(){
+    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\1439215073741.png");
+    BufferedImage distanceImage = ImageFile.fileToImage(file);
+    DistanceInfo distanceInfo = InfoSpider.getPointInfo(distanceImage);
+    distanceImage.setRGB(distanceInfo.getRed().getW(), distanceInfo.getRed().getH(), 0);
+    distanceImage.setRGB(distanceInfo.getBlue().getW(), distanceInfo.getBlue().getH(), 0);
+
+    ImageFile.imageToFile(distanceImage, new File("F:\\workProject\\gaboolic\\auto-machine\\image\\1439215073741__.png"));
+  }
+
   @Test
   public void test() {
-    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance_");
+    File path = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance");
+    String page_ = "F:\\workProject\\gaboolic\\auto-machine\\image\\distance_";
     for (File file : path.listFiles()) {
       BufferedImage distanceImage = ImageFile.fileToImage(file);
-      DistanceInfo distanceInfo = InfoSpider.getPointInfo(distanceImage);
+      try {
+        DistanceInfo distanceInfo = InfoSpider.getPointInfo(distanceImage);
+        distanceImage.setRGB(distanceInfo.getRed().getW(), distanceInfo.getRed().getH(), 0);
+        distanceImage.setRGB(distanceInfo.getBlue().getW(), distanceInfo.getBlue().getH(), 0);
 
-      System.out.println(distanceInfo);
-      System.exit(0);
+        ImageFile.imageToFile(distanceImage, new File(page_, file.getName()));
+        //System.out.println(distanceInfo);
+      } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println(file.getName());
+      }
+      //System.exit(0);
     }
   }
 }
