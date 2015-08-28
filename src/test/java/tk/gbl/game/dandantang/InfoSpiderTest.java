@@ -19,7 +19,7 @@ import java.io.IOException;
 public class InfoSpiderTest {
 
   @Test
-  public void test(){
+  public void test() {
     File distanceFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\distance\\1438999873569.png");
     BufferedImage distanceImage = ImageFile.fileToImage(distanceFile);
 
@@ -28,7 +28,7 @@ public class InfoSpiderTest {
 
 
   @Test
-  public void getDistanceInfoTest(){
+  public void getDistanceInfoTest() {
     InfoSpider.getDistanceInfoTest();
   }
 
@@ -86,6 +86,14 @@ public class InfoSpiderTest {
   }
 
   @Test
+  public void testMakeSingle() {
+    File file = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\test1.png");
+    BufferedImage image = ImageFile.fileToImage(file);
+    int angle = RecognitionUtil.getAngle(image);
+
+  }
+
+  @Test
   public void testReady() throws IOException {
     File readyFile = new File("F:\\workProject\\gaboolic\\auto-machine\\image\\ready\\1439214138599.png");
     BufferedImage readyInfo = ImageFile.fileToImage(readyFile);
@@ -93,7 +101,7 @@ public class InfoSpiderTest {
     int[][] readyImage = Binary.deal(readyInfo);
 //    Output.output(readyImage);
     Output.outputS(readyImage);
-    ArrayToImage.createImage(readyImage,new File("F:\\workProject\\gaboolic\\auto-machine\\image\\ready\\aaa.png"));
+    ArrayToImage.createImage(readyImage, new File("F:\\workProject\\gaboolic\\auto-machine\\image\\ready\\aaa.png"));
     int distance = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage);
     int distance2 = Distance.hamDistance(readyImage, ImageArrayInstance.readyImage2);
     System.out.println(distance);

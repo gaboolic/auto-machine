@@ -192,7 +192,7 @@ public class InfoSpider implements Constant {
 
   public static boolean getOverInfo() {
     BufferedImage overInfo = ScreenUtil.getScreenPart(933+offsetX, 108+offsetY, 151, 38);
-//    ImageFile.imageToFile(overInfo, new File(filePath + "\\over", System.currentTimeMillis() + ".png"));
+    ImageFile.imageToFile(overInfo, new File(filePath + "\\over", System.currentTimeMillis() + ".png"));
     int[][] overImage = Binary.deal(overInfo);
     int distance = Distance.hamDistance(overImage, OverImageArrayInstance.overImage);
     int distance2 = Distance.hamDistance(overImage, OverImageArrayInstance.overImage2);

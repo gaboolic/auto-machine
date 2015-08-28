@@ -7,6 +7,6 @@ package tk.gbl.game.dandantang.recognition;
  * @author Tian.Dong
  */
 public interface Constant {
-  static int offsetX = 0;
+  static int offsetX = 1;
   static int offsetY = 18;
 }

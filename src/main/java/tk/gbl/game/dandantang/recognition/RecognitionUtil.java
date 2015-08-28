@@ -1,9 +1,12 @@
 package tk.gbl.game.dandantang.recognition;
 
+import tk.gbl.util.image.ArrayToImage;
 import tk.gbl.util.image.Binary;
 import tk.gbl.util.image.Distance;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Date: 2015/8/9
@@ -16,6 +19,13 @@ public class RecognitionUtil {
     int[][] left = Binary.deal(angleImage.getSubimage(0, 0, 12, 13));
     int[][] right = Binary.deal(angleImage.getSubimage(12, 0, 12, 13));
 
+    try {
+      ArrayToImage.createImage(left,new File("F:\\workProject\\gaboolic\\auto-machine\\image\\left.png"));
+      ArrayToImage.createImage(right,new File("F:\\workProject\\gaboolic\\auto-machine\\image\\right.png"));
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     int l = getSingleNumber(left);
     int r = getSingleNumber(right);

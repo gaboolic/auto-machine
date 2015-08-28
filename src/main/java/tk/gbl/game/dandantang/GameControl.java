@@ -64,7 +64,7 @@ public class GameControl {
         }
       }
     }
-    int count = 10;
+    int count = 0;
     while (count-- > 0) {
       robot.keyPress(KeyEvent.VK_UP);
       robot.keyRelease(KeyEvent.VK_UP);
